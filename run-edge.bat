@@ -1,0 +1,1 @@
+flutter run -d edge --no-sound-null-safety

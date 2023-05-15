@@ -1,0 +1,1 @@
+P:\\AndroidSDK\\emulator\\emulator.exe -avd "Pixel_3a_API_21" -dns-server 8.8.8.8
