@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:empty/core/tools/print.tool.dart';
+import 'package:empty/views/faq/faq_page.dart';
+import 'package:empty/views/home/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -239,6 +241,8 @@ class _SearchingProfileDrawerWidgetState
               onTap: () {
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                logToConsole(BlocProvider.of<HomeBloc>(context));
+                BlocProvider.of<HomeBloc>(context).add(NavigateToFaqPage());
               },
               leading: FaIcon(
                 FontAwesomeIcons.questionCircle,
@@ -309,5 +313,12 @@ class _SearchingProfileDrawerWidgetState
         content: Text('Deconnected'),
       ));*/
     });
+  }
+
+  _handleFaqPageNavigation() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FaqPage()),
+    );
   }
 }

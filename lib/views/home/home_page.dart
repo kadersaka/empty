@@ -13,24 +13,14 @@ import '../../widget/imageStackWidget.dart';
 import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
 
-// import '../../../../core/utils/image_constant.dart';
-// import '../../../../widgets/DrawerWidget.dart';
-// import '../../../../widgets/custom_circle_avatar.dart';
-// import '../../../../widgets/imageStackWidget.dart';
-// import '../../../create_bottom_sheet/create_bottom_sheet.dart';
-// import '../../../create_bottom_sheet/create_bottom_sheet_bloc.dart';
-// import '../../../navigation/navigation_bloc.dart';
-// import '../../../navigation/navigation_event.dart';
-// import '../../../trend_feed/individual-post/feed_card_v2.dart';
-// import '../circle-list.dart';
-class NewHomePage extends StatefulWidget {
-  const NewHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<NewHomePage> createState() => _NewHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _NewHomePageState extends State<NewHomePage> {
+class _HomePageState extends State<HomePage> {
   double? spaceFromRight;
   double? spaceFromBottom;
   late Widget openFloatingActionButton;
@@ -74,8 +64,6 @@ class _NewHomePageState extends State<NewHomePage> {
 
   double centerRightX = 75;
   double centerRightY = 105;
-
-  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -259,15 +247,14 @@ class _NewHomePageState extends State<NewHomePage> {
     bool _separeted = false;
     spaceFromRight = MediaQuery.of(context).size.width / 2 - 35;
     print(MediaQuery.of(context).size.width / 2);
-    ApplicationView.globalKey = _globalKey;
+    final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+    
 
     return Scaffold(
-      // drawer: DrawerWidget(),
       endDrawer: SearchingProfileDrawerWidget(),
       drawerEnableOpenDragGesture: true,
       endDrawerEnableOpenDragGesture: true,
       key: _globalKey,
-
       body: SafeArea(
         child: Container(
             width: double.infinity,
@@ -283,7 +270,8 @@ class _NewHomePageState extends State<NewHomePage> {
               children: [
                 Column(
                   children: [
-                    Row(
+                    DefaultAppBarWidget(globalKey: _globalKey),
+                    /*Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
@@ -339,7 +327,7 @@ class _NewHomePageState extends State<NewHomePage> {
 
                         IconButton(
                           onPressed: () {
-                            _globalKey.currentState!.openEndDrawer();
+                            //_globalKey.currentState!.openEndDrawer();
                           },
                           icon: Icon(
                             Icons.menu,
@@ -350,7 +338,7 @@ class _NewHomePageState extends State<NewHomePage> {
 
                         // SizedBox(width: 15,),
                       ],
-                    ),
+                    ),*/
                     SizedBox(
                       height: 20,
                     ),
@@ -583,7 +571,7 @@ class _NewHomePageState extends State<NewHomePage> {
     );
   }
 
-  Future<void> _showSimpleDialog() async {
+  void _showSimpleDialog() async {
     await showDialog<void>(
         context: context,
         builder: (BuildContext context) {
