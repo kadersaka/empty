@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_localizations.dart';
+import '../core/utils/default_dialog.tools.dart';
 import '../views/search/main_search_view.dart';
 import 'custom_circle_avatar.dart';
 
@@ -261,6 +262,7 @@ class _SearchingProfileDrawerWidgetState
               onTap: () {
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                _handleLogout();
               },
               leading: FaIcon(
                 FontAwesomeIcons.signOutAlt,
@@ -296,5 +298,16 @@ class _SearchingProfileDrawerWidgetState
             child: SearchView(),
           );
         });
+  }
+
+  _handleLogout() {
+    displayDialogMessage(context, "Deconection",
+        "Are you sure you want to log out of YuTU?", "Yes, Log Out", () {
+      //TODO Move this to be an action trigerred by receiving an avent from a bloc
+      //In another page
+      /*ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Deconnected'),
+      ));*/
+    });
   }
 }
