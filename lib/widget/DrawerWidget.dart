@@ -242,7 +242,8 @@ class _SearchingProfileDrawerWidgetState
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                 logToConsole(BlocProvider.of<HomeBloc>(context));
-                BlocProvider.of<HomeBloc>(context).add(NavigateToFaqPage());
+                BlocProvider.of<HomeBloc>(context)
+                    .add(NavigateToPageEvent(DrawerMenuPageEnum.faq));
               },
               leading: FaIcon(
                 FontAwesomeIcons.questionCircle,

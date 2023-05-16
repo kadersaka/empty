@@ -2,17 +2,9 @@ import 'package:empty/views/faq/faq_page.dart';
 import 'package:empty/views/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../constants/app_localizations.dart';
-import '../../../../constants/colors_constants.dart';
-import '../../core/utils/image_constant.dart';
+import '../../core/tools/print.tool.dart';
 import '../../widget/DrawerWidget.dart';
-import '../../widget/appBar/default_app_bar_widget.dart';
-import '../../widget/custom_circle_avatar.dart';
-import '../../widget/imageStackWidget.dart';
-import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
 import 'bloc/home_bloc.dart';
 
@@ -39,14 +31,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
   static final List<String> titles = <String>[
     "Contrats",
-    "Factures",
-    "Payer une facture",
-    "Paiements",
-    "Mon Compte"
   ];
   static final List<Widget> _widgetOptions = <Widget>[
-    const HomePage(),
-    FaqPage()
+    const HomePage()
   ];
 
   void _onItemTapped(int index) {
@@ -56,8 +43,9 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext rootContext) {
     ApplicationView.globalKey = _globalKey;
+    logToConsole(BlocProvider.of<HomeBloc>(rootContext));
     return Scaffold(
       /*appBar: AppBar(
         title: Text(titles[_selectedIndex]),
@@ -71,7 +59,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => FaqPage()),
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: FaqPage())),
             );
           }
         },
