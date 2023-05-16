@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/tools/print.tool.dart';
 import '../../widget/DrawerWidget.dart';
 import '../application_view.dart';
+import '../connections/connections_page.dart';
 import 'bloc/home_bloc.dart';
 
 // import '../../../../core/utils/image_constant.dart';
@@ -52,17 +53,22 @@ class _WelcomePageState extends State<WelcomePage> {
       ),*/
       body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
+          //TODO improve this if else blocks
           if (state.drawerMenuPage == DrawerMenuPageEnum.faq) {
-            /*setState(() {
-              _selectedIndex = 1;
-            });*/
-
             Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(rootContext),
                       child: FaqPage())),
+            );
+          } else if (state.drawerMenuPage == DrawerMenuPageEnum.connections) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: ConnectionsPage())),
             );
           }
         },

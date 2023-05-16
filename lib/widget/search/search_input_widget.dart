@@ -37,6 +37,7 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
             child: TextFormField(
               style: TextStyle(),
               decoration: const InputDecoration(
+                  hintText: "Search",
                   isDense: true,
                   contentPadding: EdgeInsets.only(bottom: 1.0),
                   border: InputBorder.none,

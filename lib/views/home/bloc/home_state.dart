@@ -15,4 +15,4 @@ class HomeInitial extends HomeState {
   HomeInitial() : super(drawerMenuPage: DrawerMenuPageEnum.none);
 }
 
-enum DrawerMenuPageEnum { faq, none }
+enum DrawerMenuPageEnum { faq, connections, none }

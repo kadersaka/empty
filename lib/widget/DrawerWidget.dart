@@ -177,6 +177,9 @@ class _SearchingProfileDrawerWidgetState
               onTap: () {
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                logToConsole(BlocProvider.of<HomeBloc>(context));
+                BlocProvider.of<HomeBloc>(context)
+                    .add(NavigateToPageEvent(DrawerMenuPageEnum.connections));
               },
               leading: FaIcon(
                 FontAwesomeIcons.users,

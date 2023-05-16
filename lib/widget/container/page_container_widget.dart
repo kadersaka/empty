@@ -8,7 +8,8 @@ import '../appBar/top_header_menu_bar.widget.dart';
 class PageContainerWidget extends StatelessWidget {
   final Widget child;
   final String appBarTitle;
-  PageContainerWidget({super.key, required this.child, required this.appBarTitle});
+  PageContainerWidget(
+      {super.key, required this.child, required this.appBarTitle});
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,10 +37,8 @@ class PageContainerWidget extends StatelessWidget {
                         Navigator.pop(context);
                       }),
                   Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: SingleChildScrollView(
-                      child: child,
-                    ),
+                    padding: const EdgeInsets.all(5.0),
+                    child: child,
                   )
                 ]))));
   }
