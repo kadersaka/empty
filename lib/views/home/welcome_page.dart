@@ -7,6 +7,7 @@ import '../../core/tools/print.tool.dart';
 import '../../widget/DrawerWidget.dart';
 import '../application_view.dart';
 import '../connections/connections_page.dart';
+import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_page.dart';
 import 'bloc/home_bloc.dart';
 
@@ -75,7 +76,10 @@ class _WelcomePageState extends State<WelcomePage> {
               MaterialPageRoute(
                   builder: (context) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(rootContext),
-                      child: SettingsPage())),
+                      child: BlocProvider(
+                        create: (context) => SettingsBloc(),
+                        child: SettingsPage(),
+                      ))),
             );
           }
         },

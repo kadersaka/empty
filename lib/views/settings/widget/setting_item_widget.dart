@@ -1,43 +1,56 @@
 import 'package:flutter/material.dart';
 
 class SettingItemWidget extends StatelessWidget {
-  const SettingItemWidget({super.key});
+  final Widget icon;
+  final String text;
+  final String small;
+  final Function? onTap;
+  const SettingItemWidget(
+      {super.key,
+      required this.icon,
+      required this.text,
+      required this.small,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Transform.rotate(
-                angle: -45,
-                child: Icon(Icons.key_rounded),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Password",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 5.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Change Password",
-                style: TextStyle(fontSize: 10.0),
-              ),
-              Icon(Icons.chevron_right)
-            ],
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        if (onTap != null) {
+          onTap!();
+        }
+      },
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                icon,
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  small,
+                  style: TextStyle(fontSize: 10.0),
+                ),
+                Icon(Icons.chevron_right)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
