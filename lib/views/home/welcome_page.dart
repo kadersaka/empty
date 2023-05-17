@@ -7,6 +7,7 @@ import '../../core/tools/print.tool.dart';
 import '../../widget/DrawerWidget.dart';
 import '../application_view.dart';
 import '../connections/connections_page.dart';
+import '../settings/settings_page.dart';
 import 'bloc/home_bloc.dart';
 
 // import '../../../../core/utils/image_constant.dart';
@@ -33,9 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
   static final List<String> titles = <String>[
     "Contrats",
   ];
-  static final List<Widget> _widgetOptions = <Widget>[
-    const HomePage()
-  ];
+  static final List<Widget> _widgetOptions = <Widget>[const HomePage()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -69,6 +68,14 @@ class _WelcomePageState extends State<WelcomePage> {
                   builder: (context) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(rootContext),
                       child: ConnectionsPage())),
+            );
+          } else if (state.drawerMenuPage == DrawerMenuPageEnum.settings) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: SettingsPage())),
             );
           }
         },

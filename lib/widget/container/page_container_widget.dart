@@ -36,8 +36,8 @@ class PageContainerWidget extends StatelessWidget {
                 child: Column(children: [
                   Padding(
                     padding: hasHeaderPadding
-                        ? EdgeInsets.all(20.0)
-                        : EdgeInsets.all(0.0),
+                        ? const EdgeInsets.all(20.0)
+                        : const EdgeInsets.all(0.0),
                     child: Column(
                       children: [
                         DefaultAppBarWidget(
