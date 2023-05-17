@@ -69,8 +69,12 @@ class _ConnectionItemWidgetState extends State<ConnectionItemWidget> {
                 displayDialogMessage(
                     context,
                     "Deconection",
-                    "Are you sure you want to log out of YuTU?",
-                    "Yes, Log Out", () {
+                    details.direction == DismissDirection.startToEnd ?
+                     "Are you sure you want to block this person?" :
+                     "Are you sure you want to remove this person?",
+                    details.direction == DismissDirection.startToEnd ?
+                    "Yes, Block":
+                    "Yes, Remove", () {
                   _dialogShown = false;
                 });
               });
