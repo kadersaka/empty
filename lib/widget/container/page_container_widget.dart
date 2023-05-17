@@ -8,8 +8,9 @@ import '../appBar/top_header_menu_bar.widget.dart';
 class PageContainerWidget extends StatelessWidget {
   final Widget child;
   final String appBarTitle;
+  final bool hasPadding;
   PageContainerWidget(
-      {super.key, required this.child, required this.appBarTitle});
+      {super.key, required this.child, required this.appBarTitle, this.hasPadding=true});
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -24,7 +25,7 @@ class PageContainerWidget extends StatelessWidget {
         body: SafeArea(
             child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.all(20.0),
+                padding: hasPadding ? const EdgeInsets.all(20.0) : const EdgeInsets.all(0.0),
                 child: Column(children: [
                   DefaultAppBarWidget(
                     dark: true,
