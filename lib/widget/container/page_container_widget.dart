@@ -9,8 +9,13 @@ class PageContainerWidget extends StatelessWidget {
   final Widget child;
   final String appBarTitle;
   final bool hasPadding;
+  final bool hasHeaderPadding;
   PageContainerWidget(
-      {super.key, required this.child, required this.appBarTitle, this.hasPadding=true});
+      {super.key,
+      required this.child,
+      required this.appBarTitle,
+      this.hasPadding = true,
+      this.hasHeaderPadding = true});
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -25,18 +30,29 @@ class PageContainerWidget extends StatelessWidget {
         body: SafeArea(
             child: Container(
                 color: Colors.white,
-                padding: hasPadding ? const EdgeInsets.all(20.0) : const EdgeInsets.all(0.0),
+                padding: hasPadding
+                    ? const EdgeInsets.all(20.0)
+                    : const EdgeInsets.all(0.0),
                 child: Column(children: [
-                  DefaultAppBarWidget(
-                    dark: true,
-                    globalKey: _globalKey,
+                  Padding(
+                    padding: hasHeaderPadding
+                        ? EdgeInsets.all(20.0)
+                        : EdgeInsets.all(0.0),
+                    child: Column(
+                      children: [
+                        DefaultAppBarWidget(
+                          dark: true,
+                          globalKey: _globalKey,
+                        ),
+                        TopHeaderMenuBar(
+                            color: Colors.black,
+                            title: appBarTitle,
+                            onBack: () {
+                              Navigator.pop(context);
+                            }),
+                      ],
+                    ),
                   ),
-                  TopHeaderMenuBar(
-                      color: Colors.black,
-                      title: appBarTitle,
-                      onBack: () {
-                        Navigator.pop(context);
-                      }),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: child,
