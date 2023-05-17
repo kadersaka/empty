@@ -53,10 +53,14 @@ class PageContainerWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
+                  Expanded(
+                      child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: child,
-                  )
+                    child: Container(
+                      color: const Color(0x00f8fafd),
+                      child: child,
+                    ),
+                  ))
                 ]))));
   }
 }
