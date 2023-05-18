@@ -1,3 +1,6 @@
+import 'package:empty/core/tools/print.tool.dart';
+import 'package:empty/views/new_post/new_post_view.dart';
+import 'package:empty/widget/shape/bottom_sheet_modal_shape.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,8 +11,10 @@ import '../../../../constants/colors_constants.dart';
 import '../../core/utils/image_constant.dart';
 import '../../widget/DrawerWidget.dart';
 import '../../widget/appBar/default_app_bar_widget.dart';
+import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/custom_circle_avatar.dart';
 import '../../widget/imageStackWidget.dart';
+import '../../widget/text/text_header_one_widget.dart';
 import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
 
@@ -87,8 +92,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         onTap: () {
+          logToConsole("Post Yuty");
           Navigator.of(context).pop();
           // Navigator.of(context).pop();
+
+          //Post a yutu button
+          showModalBottomSheet(
+              context: context,
+              elevation: 0,
+              isScrollControlled: true,
+              shape: roundedBottomModalSheet(),
+              builder: (buildContext) => BottomSheetModalContainer(
+                    child: NewPostView()
+                  ));
         },
       ),
       InkWell(
@@ -248,7 +264,6 @@ class _HomePageState extends State<HomePage> {
     spaceFromRight = MediaQuery.of(context).size.width / 2 - 35;
     print(MediaQuery.of(context).size.width / 2);
     final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-    
 
     return Scaffold(
       endDrawer: SearchingProfileDrawerWidget(),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class DefaultTextInputWidget extends StatelessWidget {
+class TextAreaWidget extends StatelessWidget {
   final String placeholder;
-  const DefaultTextInputWidget({super.key, required this.placeholder});
+  const TextAreaWidget({super.key, required this.placeholder});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      height: 50,
+      height: 100,
       decoration: BoxDecoration(border: Border.all(color: Color(0xffd9d9d9))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -16,6 +16,7 @@ class DefaultTextInputWidget extends StatelessWidget {
           Expanded(
               child: TextFormField(
             style: TextStyle(),
+            maxLines: 20,
             decoration: InputDecoration(
               hintText: placeholder,
               isDense: true,
