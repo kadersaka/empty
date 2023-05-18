@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:empty/core/tools/print.tool.dart';
 import 'package:empty/views/faq/faq_page.dart';
 import 'package:empty/views/home/bloc/home_bloc.dart';
+import 'package:empty/widget/dialogs/custom_simple_dailog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -271,7 +273,7 @@ class _SearchingProfileDrawerWidgetState
             ),
             ListTile(
               onTap: () {
-                Navigator.of(context).pop();
+                //Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                 _handleLogout();
               },
@@ -312,14 +314,51 @@ class _SearchingProfileDrawerWidgetState
   }
 
   _handleLogout() {
-    displayDialogMessage(context, "Deconection",
+    /*displayDialogMessage(context, "Deconection",
         "Are you sure you want to log out of YuTU?", "Yes, Log Out", () {
       //TODO Move this to be an action trigerred by receiving an avent from a bloc
       //In another page
-      /*ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Deconnected'),
-      ));*/
-    });
+      ));
+    });*/
+
+    showDialog(
+      context: context,
+      builder: (context) => CustomSimpleDialog(
+        text: 'Are you sure you want to log out of YuTU?',
+        okText: "Yes, Log Out", onOk: () {
+          
+        },),
+    );
+
+    /*showGeneralDialog(
+    barrierDismissible: true,
+    barrierLabel: '',
+    barrierColor: Colors.black38,
+    transitionDuration: Duration(milliseconds: 500),
+    pageBuilder: (ctx, anim1, anim2) => AlertDialog(
+        title: Text('blured background'),
+        content: Text('background should be blured and little bit darker '),
+        elevation: 2,
+        actions: [
+            TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                    Navigator.of(context).pop();
+                },
+              ),
+            ],
+   ),
+   transitionBuilder: (ctx, anim1, anim2, child) => BackdropFilter(
+       filter: ImageFilter.blur(sigmaX: 40 * anim1.value, sigmaY: 40 * anim1.value),
+           child: FadeTransition(
+               child: child,
+               opacity: anim1,
+           ),
+       ),
+   context: context,
+);*/
   }
 
   _handleFaqPageNavigation() {

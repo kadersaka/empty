@@ -4,6 +4,7 @@ import 'package:empty/core/tools/print.tool.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/default_dialog.tools.dart';
+import '../../../widget/dialogs/custom_simple_dailog.dart';
 import 'connections_result_item_foreground_widget.dart';
 
 class ConnectionItemWidget extends StatefulWidget {
@@ -66,17 +67,23 @@ class _ConnectionItemWidgetState extends State<ConnectionItemWidget> {
             if (_dialogShown == false) {
               _dialogShown = true;
               Future.delayed(Duration(seconds: 1), () {
-                displayDialogMessage(
-                    context,
-                    "Deconection",
-                    details.direction == DismissDirection.startToEnd ?
-                     "Are you sure you want to block this person?" :
-                     "Are you sure you want to remove this person?",
-                    details.direction == DismissDirection.startToEnd ?
-                    "Yes, Block":
-                    "Yes, Remove", () {
-                  _dialogShown = false;
-                });
+                showDialog(
+                  context: context,
+                  builder: (context) => CustomSimpleDialog(
+                    text: details.direction == DismissDirection.startToEnd
+                        ? "Are you sure you want to block this person?"
+                        : "Are you sure you want to remove this person?",
+                    okText: details.direction == DismissDirection.startToEnd
+                        ? "Yes, Block"
+                        : "Yes, Remove",
+                    onOk: () {
+                      _dialogShown = false;
+                    },
+                    onCancel: () {
+                      _dialogShown = false;
+                    },
+                  ),
+                );
               });
             }
           }

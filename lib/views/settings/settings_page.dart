@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/tools/print.tool.dart';
 import '../../core/utils/default_dialog.tools.dart';
 import '../../widget/container/page_container_widget.dart';
+import '../../widget/dialogs/custom_simple_dailog.dart';
 import '../../widget/search/search_input_widget.dart';
 import '../home/bloc/home_bloc.dart';
 import 'widget/setting_item_simple_widget.dart';
@@ -44,13 +45,15 @@ class SettingsPage extends StatelessWidget {
                       logToConsole(state.updatePasswordFormState);
                       if (state.updatePasswordFormState ==
                           UpdatePasswordFormState.success) {
-                        displayDialogMessage(
-                            context,
-                            "",
-                            "Please check your email for further instruction",
-                            null, () {
-                          //TODO reset update form state
-                        });
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomSimpleDialog(
+                            text:
+                                'Please check your email for further instruction',
+                            okText: "",
+                            onOk: () {},
+                          ),
+                        );
                       }
                     },
                     child: SizedBox(
