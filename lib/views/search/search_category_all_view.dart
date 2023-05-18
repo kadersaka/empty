@@ -1,6 +1,7 @@
 import 'package:empty/widget/text/text_header_one_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../widget/text/text_header_one_sub_title_widget.dart';
 import 'widget/search_result_item_large_widget.dart';
 
 class SearchCategoryAllViewWidget extends StatelessWidget {
@@ -11,14 +12,16 @@ class SearchCategoryAllViewWidget extends StatelessWidget {
     return const Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                TextHeaderOneWidget(text: "All Profiles"),
-                Text("Related to 'guitar'",
-                    style: TextStyle(color: Colors.grey))
-              ],
+            TextHeaderOneWidget(
+              text: "All Profiles",
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            TextHeaderOneSubTitleWidget(
+              text: "Related to 'guitar'",
             )
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'search_category_all_view.dart';
 import '../../widget/search/search_input_widget.dart';
+import 'search_result_view.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -16,7 +17,7 @@ class SearchView extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
                 topRight: Radius.circular(20.0))),
-        child: const Column(
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -26,13 +27,10 @@ class SearchView extends StatelessWidget {
               height: 20.0,
             ),
             SearchInputWidget(),
-            SizedBox(
-              height: 20.0,
-            ),
 
             //Dynamic COntainer
-            //SearchResultsView(),
-            SearchCategoryAllViewWidget()
+            SearchResultsView(),
+            //SearchCategoryAllViewWidget()
           ],
         ));
   }

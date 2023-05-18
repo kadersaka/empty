@@ -8,7 +8,7 @@ class TextHeaderOneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
     );
   }
 }

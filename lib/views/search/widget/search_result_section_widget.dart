@@ -13,7 +13,7 @@ class SearchResultSectionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30.0,
+            height: 20.0,
           ),
           Row(
             children: [TextHeaderOneWidget(text: "Circles")],

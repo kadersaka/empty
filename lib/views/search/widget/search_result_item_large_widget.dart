@@ -15,7 +15,7 @@ class SearchResultItemLargeWidget extends StatelessWidget {
               children: [
                 Image(
                     image: AssetImage("assets/images/img_ellipse6.png"), 
-                    height: 70),
+                    height: 57),
                 SizedBox(
                   width: 15.0,
                 ),
@@ -27,7 +27,7 @@ class SearchResultItemLargeWidget extends StatelessWidget {
                     Text(
                       "Mark Thompson",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -38,7 +38,7 @@ class SearchResultItemLargeWidget extends StatelessWidget {
                      "Interest: Guitar",
                       //"Pharmacie de Garde: Oui",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                      style: TextStyle(fontSize: 14.0, color: Colors.grey),
                     )
                   ],
                 )),

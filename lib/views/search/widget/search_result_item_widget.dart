@@ -6,7 +6,9 @@ class SearchResultItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(bottom: 25.0),
+        padding: const EdgeInsets.fromLTRB(
+          0, //From the design this is equal to 20 but we have already set a padding of 20 on the container 
+          6, 75, 6),
         //color: Colors.blue,
         child: Column(
           children: [
@@ -16,7 +18,7 @@ class SearchResultItemWidget extends StatelessWidget {
               children: [
                 Image(
                     image: AssetImage("assets/images/img_ellipse6.png"), 
-                    height: 45),
+                    height: 40),
                 const SizedBox(
                   width: 15.0,
                 ),
@@ -27,7 +29,7 @@ class SearchResultItemWidget extends StatelessWidget {
                     Text(
                       "Guitar",
                       textAlign: TextAlign.left,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -38,7 +40,7 @@ class SearchResultItemWidget extends StatelessWidget {
                      "Public Circle",
                       //"Pharmacie de Garde: Oui",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                      style: TextStyle(fontSize: 14.0, color: Colors.grey),
                     )
                   ],
                 )),
