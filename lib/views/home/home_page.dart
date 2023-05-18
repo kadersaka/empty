@@ -17,6 +17,7 @@ import '../../widget/imageStackWidget.dart';
 import '../../widget/text/text_header_one_widget.dart';
 import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
+import '../new_post/bloc/new_post_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -103,8 +104,11 @@ class _HomePageState extends State<HomePage> {
               isScrollControlled: true,
               shape: roundedBottomModalSheet(),
               builder: (buildContext) => BottomSheetModalContainer(
-                    child: NewPostView()
-                  ));
+                  title: "New Post",
+                  child: BlocProvider(
+                    create: (context) => NewPostBloc(),
+                    child: const NewPostView(),
+                  )));
         },
       ),
       InkWell(

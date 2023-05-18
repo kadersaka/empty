@@ -4,7 +4,10 @@ import '../text/text_header_one_widget.dart';
 
 class BottomSheetModalContainer extends StatelessWidget {
   final Widget child;
-  const BottomSheetModalContainer({super.key, required this.child});
+  final String title;
+  final Widget? header;
+  const BottomSheetModalContainer(
+      {super.key, required this.child, required this.title, this.header});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,15 @@ class BottomSheetModalContainer extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [TextHeaderOneWidget(text: "New Post")],
+                children: [TextHeaderOneWidget(text: title)],
               )),
+          header != null
+              ? Container(
+                  color: const Color(0xfff8fafd),
+                  width: double.infinity,
+                  child: Padding(padding: EdgeInsets.all(20.0), child: header),
+                )
+              : SizedBox(),
           Expanded(
               child: Container(
                   color: const Color(0xfff8fafd),

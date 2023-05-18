@@ -1,11 +1,18 @@
+import 'package:empty/core/tools/print.tool.dart';
 import 'package:empty/core/utils/image_constant.dart';
+import 'package:empty/views/new_post/bloc/new_post_bloc.dart';
+import 'package:empty/views/new_post/views/locations_view.dart';
 import 'package:empty/views/new_post/widget/category_widget.dart';
 import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/input/default_text_input._widget.dart';
 import '../../widget/input/icon_text_input_widget.dart';
 import '../../widget/input/text_area._widget.dart';
+import '../../widget/search/search_input_widget.dart';
+import '../../widget/shape/bottom_sheet_modal_shape.dart';
 import '../../widget/text/text_header_one_widget.dart';
 import '../../widget/text/text_label_widget.dart';
 import 'widget/broadcast_option_widget.dart';
@@ -15,7 +22,7 @@ class NewPostView extends StatelessWidget {
   const NewPostView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext rootContext) {
     return Container(
         padding: const EdgeInsets.all(20.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -89,9 +96,31 @@ class NewPostView extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          IconInputWidget(
-            placeholder: "Location",
-            iconData: Icons.place_outlined,
+          BlocBuilder<NewPostBloc, NewPostState>(
+            builder: (context, state) {
+              logToConsole("Location changed ${state.selectedLocation} ");
+
+              return IconInputWidget(
+                placeholder: "Location",
+                iconData: Icons.place_outlined,
+                value: state.selectedLocation,
+                onTap: () {
+                  //TODO show bottom sheet modal
+                  showModalBottomSheet(
+                      context: rootContext,
+                      elevation: 0,
+                      isScrollControlled: true,
+                      shape: roundedBottomModalSheet(),
+                      builder: (buildContext) => BottomSheetModalContainer(
+                          title: "Location",
+                          header: SearchInputWidget(),
+                          child: BlocProvider.value(
+                            value: BlocProvider.of<NewPostBloc>(rootContext),
+                            child: LocationsView(),
+                          )));
+                },
+              );
+            },
           ),
           SizedBox(
             height: 10.0,
@@ -99,7 +128,17 @@ class NewPostView extends StatelessWidget {
           //TODO create a date input widget
           IconInputWidget(
             placeholder: "Date",
+            readOnly: true,
             iconData: Icons.calendar_month_outlined,
+            onTap: () async {
+              final DateTime? selected = await showDatePicker(
+                  context: rootContext,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(DateTime.now().year + 1));
+
+              //TODO use bloc to save and updat ehte state
+            },
           ),
 
           SizedBox(
@@ -169,6 +208,13 @@ class NewPostView extends StatelessWidget {
                     ),
                     UnderlineTextButton(text: "Cancel"),
                   ])),
+
+          //TODO move into a component
+          SizedBox(
+            height: WidgetsBinding.instance.window.viewInsets.bottom > 0.0
+                ? 300
+                : 0,
+          )
         ]));
   }
 }

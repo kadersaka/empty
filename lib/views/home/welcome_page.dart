@@ -51,6 +51,7 @@ class _WelcomePageState extends State<WelcomePage> {
       /*appBar: AppBar(
         title: Text(titles[_selectedIndex]),
       ),*/
+      resizeToAvoidBottomInset: false,
       body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           //TODO improve this if else blocks
