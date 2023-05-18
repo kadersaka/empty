@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:empty/core/tools/print.tool.dart';
 import 'package:empty/core/utils/image_constant.dart';
 import 'package:empty/views/new_post/bloc/new_post_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:empty/views/new_post/widget/category_widget.dart';
 import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 
 import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/input/default_text_input._widget.dart';
@@ -16,10 +19,38 @@ import '../../widget/shape/bottom_sheet_modal_shape.dart';
 import '../../widget/text/text_header_one_widget.dart';
 import '../../widget/text/text_label_widget.dart';
 import 'widget/broadcast_option_widget.dart';
+import 'widget/category_tooltip_content.dart';
 import 'widget/tag_widget.dart';
 
-class NewPostView extends StatelessWidget {
+class NewPostView extends StatefulWidget {
   const NewPostView({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _NewPostViewState();
+  }
+}
+
+class _NewPostViewState extends State<NewPostView> {
+  final tooltipController = JustTheController();
+
+  @override
+  void initState() {
+    // Programatically display tooltip after two seconds
+    Future.delayed(const Duration(seconds: 2), () {
+      try {
+        tooltipController.showTooltip(immediately: false);
+      } catch (e) {
+        logToConsole(e);
+      }
+    });
+
+    tooltipController.addListener(() {
+      // Prints the enum value of [TooltipStatus.isShowing] or [TooltipStatus.isHiding]
+      print('controller: ${tooltipController.value}');
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext rootContext) {
@@ -40,7 +71,7 @@ class NewPostView extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-              const Expanded(
+              Expanded(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -51,14 +82,27 @@ class NewPostView extends StatelessWidget {
                         text: "Pick a category",
                         isRequired: true,
                       ),
-                      Icon(Icons.info_outline)
+                      GestureDetector(
+                        onTap: () {
+                          tooltipController.showTooltip();
+                        },
+                        child: Icon(Icons.info_outline),
+                      )
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CategoryWidget(
-                        text: "Tools & Tips",
+                      JustTheTooltip(
+                        controller: tooltipController,
+                        backgroundColor: Color(0x992B3042),
+                        child: CategoryWidget(
+                          text: "Tools & Tips",
+                        ),
+                        content: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CategoryTooltipContent(),
+                        ),
                       ),
                       CategoryWidget(
                         text: "My Life",
