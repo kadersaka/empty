@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 
-class TextAreaWidget extends StatelessWidget {
+class TextAreaWidget extends StatefulWidget {
   final String placeholder;
-  const TextAreaWidget({super.key, required this.placeholder});
+  final String? value;
+  final bool readOnly;
+  const TextAreaWidget({super.key, required this.placeholder, this.value, this.readOnly=false});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _TextAreaWidgetState();
+  }
+}
+
+class _TextAreaWidgetState extends State<TextAreaWidget> {
+  late TextEditingController _inputController;
+
+  @override
+  initState() {
+    _inputController = TextEditingController(text: widget.value);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    //TODO reviex this line in case the onChange is fired and the widget is going to render
+    _inputController.text =  _inputController.text.isNotEmpty ? _inputController.text :  widget.value ?? "";
     return Container(
       padding: EdgeInsets.all(10.0),
       height: 100,
@@ -15,10 +34,12 @@ class TextAreaWidget extends StatelessWidget {
         children: [
           Expanded(
               child: TextFormField(
-            style: TextStyle(),
+            controller: _inputController,
+            readOnly: widget.readOnly,
+            style: TextStyle(fontSize: 16.0),
             maxLines: 20,
             decoration: InputDecoration(
-              hintText: placeholder,
+              hintText: widget.placeholder,
               isDense: true,
               contentPadding: EdgeInsets.only(bottom: 1.0),
               border: InputBorder.none,

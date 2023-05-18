@@ -18,6 +18,7 @@ import '../../widget/text/text_header_one_widget.dart';
 import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
 import '../new_post/bloc/new_post_bloc.dart';
+import '../post_owner_about/post_owner_about_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -461,7 +462,20 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       trailing: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          //Show detail view with a bottom sheet modal
+                          showModalBottomSheet(
+                              context: context,
+                              elevation: 0,
+                              isScrollControlled: true,
+                              shape: roundedBottomModalSheet(),
+                              builder: (buildContext) =>
+                                  BottomSheetModalContainer(
+                                    percentage: 0.80,
+                                      title: "About",
+                                      titleSize: 24.0,
+                                      child: PostOwnerAboutView()));
+                        },
                         child: Text(
                           "more",
                           style: TextStyle(

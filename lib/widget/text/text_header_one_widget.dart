@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 class TextHeaderOneWidget extends StatelessWidget {
   final String text;
-  const TextHeaderOneWidget({super.key, required this.text});
+  final double fontSize;
+  const TextHeaderOneWidget({super.key, required this.text, this.fontSize=16.0});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize),
     );
   }
 }

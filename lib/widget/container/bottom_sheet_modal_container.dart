@@ -6,14 +6,21 @@ class BottomSheetModalContainer extends StatelessWidget {
   final Widget child;
   final String title;
   final Widget? header;
+  final double percentage;
+  final double titleSize;
   const BottomSheetModalContainer(
-      {super.key, required this.child, required this.title, this.header});
+      {super.key,
+      required this.child,
+      required this.title,
+      this.header,
+      this.percentage = 0.90, this.titleSize=16.0});
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData? deviceInfo = MediaQuery.of(context);
     return Container(
-        height: deviceInfo == null ? 800.0 : deviceInfo!.size.height * 0.90,
+        height:
+            deviceInfo == null ? 800.0 : deviceInfo!.size.height * percentage,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -24,7 +31,7 @@ class BottomSheetModalContainer extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [TextHeaderOneWidget(text: title)],
+                children: [TextHeaderOneWidget(text: title, fontSize: titleSize)],
               )),
           header != null
               ? Container(
