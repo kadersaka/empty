@@ -43,6 +43,7 @@ class CustomSimpleDialog extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
+                        Navigator.pop(context);
                         if (onOk != null) {
                           onOk!();
                         }
