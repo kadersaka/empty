@@ -6,6 +6,7 @@ import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/container/page_container_widget.dart';
 import '../../widget/container/secondary_page_container_widget.dart';
 import '../../widget/form/broadcast_option_widget.dart';
+import '../../widget/form/form_select_widget.dart';
 import '../../widget/form/price_form_input_widget.dart';
 import '../../widget/input/default_text_input._widget.dart';
 import '../../widget/input/icon_text_input_widget.dart';
@@ -13,6 +14,7 @@ import '../../widget/input/text_area._widget.dart';
 import '../../widget/location/locations_view.dart';
 import '../../widget/search/search_input_widget.dart';
 import '../../widget/shape/bottom_sheet_modal_shape.dart';
+import '../../widget/tag/tags_container_widget.dart';
 import '../../widget/text/text_label_widget.dart';
 import '../../widget/custom_tag_widget.dart';
 import 'bloc/new_listing_bloc.dart';
@@ -169,13 +171,9 @@ class _NewListingPageState extends State<NewListingPage> {
                       SizedBox(
                         height: 10.0,
                       ),
-                      Row(
-                        children: [
-                          CustomTagChip(
-                            text: "Add",
-                            icon: Icons.add,
-                          )
-                        ],
+                      TagsContainerWidget(
+                        items: ["Music", "Lessons", "Guitar"],
+                        onAddTap: () {},
                       ),
                       SizedBox(
                         height: 20.0,
@@ -203,7 +201,11 @@ class _NewListingPageState extends State<NewListingPage> {
                       SizedBox(
                         height: 10.0,
                       ),
-                      DefaultTextInputWidget(placeholder: "Select"),
+                      IconInputWidget(
+                        placeholder: "Select",
+                        iconData: Icons.keyboard_arrow_down_outlined,
+                      ),
+                      //FormSelectWidget(),
                       SizedBox(
                         height: 20.0,
                       ),

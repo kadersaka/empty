@@ -25,6 +25,7 @@ dependencies:
   flutter_gradient_colors: ^2.1.1
   just_the_tooltip: ^0.0.12
   currency_text_input_formatter: ^2.1.9
+  dropdown_button2: ^2.1.2
 
 
 dev_dependencies:

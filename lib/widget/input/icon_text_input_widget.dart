@@ -72,6 +72,7 @@ class _IconInputWidgetState extends State<IconInputWidget> {
           Icon(
             widget.iconData,
             size: 24,
+            color: Color(0xff737a82),
           )
         ],
       ),
