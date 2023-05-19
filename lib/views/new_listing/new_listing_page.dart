@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 
 import '../../core/tools/print.tool.dart';
 import '../../widget/container/bottom_sheet_modal_container.dart';
@@ -18,6 +21,7 @@ import '../../widget/tag/tags_container_widget.dart';
 import '../../widget/text/text_label_widget.dart';
 import '../../widget/custom_tag_widget.dart';
 import 'bloc/new_listing_bloc.dart';
+import 'widget/marketplace_tooltip_content.dart';
 import 'widget/simple_text_switcher.dart';
 
 class NewListingPage extends StatefulWidget {
@@ -30,6 +34,32 @@ class NewListingPage extends StatefulWidget {
 }
 
 class _NewListingPageState extends State<NewListingPage> {
+  final tooltipController = JustTheController();
+
+  @override
+  void initState() {
+    // Programatically display tooltip after two seconds
+    Future.delayed(const Duration(seconds: 2), () {
+      try {
+        tooltipController.showTooltip(immediately: false);
+      } catch (e) {
+        logToConsole(e);
+      }
+    });
+
+    tooltipController.addListener(() {
+      // Prints the enum value of [TooltipStatus.isShowing] or [TooltipStatus.isHiding]
+      print('controller: ${tooltipController.value}');
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tooltipController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext rootContext) {
     return SecondaryPageContainerWidget(
@@ -42,6 +72,28 @@ class _NewListingPageState extends State<NewListingPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 100),
+                        child: JustTheTooltip(
+                          controller: tooltipController,
+                          margin: EdgeInsets.all(20.0),
+                          backgroundColor: Color(0x992B3042),
+                          child: GestureDetector(
+                            onTap: () {
+                              tooltipController.showTooltip();
+                            },
+                            child: SizedBox(
+                              child: Text(""),
+                            ),
+                          ),
+                          content: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                                child: MarketplaceTooltipContent()),
+                          ),
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

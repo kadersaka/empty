@@ -53,6 +53,12 @@ class _NewPostViewState extends State<NewPostView> {
   }
 
   @override
+  void dispose() {
+    tooltipController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext rootContext) {
     return Container(
         padding: const EdgeInsets.all(20.0),

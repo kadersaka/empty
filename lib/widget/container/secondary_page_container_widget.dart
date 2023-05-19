@@ -36,7 +36,7 @@ class SecondaryPageContainerWidget extends StatelessWidget {
                     : const EdgeInsets.all(0.0),
                 child: Column(children: [
                   Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(10.0),
                     child: Column(
                       children: [
                         SecondaryAppBarWidget(
