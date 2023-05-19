@@ -13,7 +13,8 @@ class _SettingItemSwitcherWidgetState extends State<SettingItemSwitcherWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       width: double.infinity,
       child: Column(
         children: [

@@ -24,14 +24,14 @@ class SettingsPage extends StatelessWidget {
 
     return PageContainerWidget(
         appBarTitle: "Settings",
-        hasPadding: true,
-        hasHeaderPadding: false,
+        hasPadding: false,
         child: Column(
           children: [
             const SizedBox(
               height: 20.0,
             ),
-            const SearchInputWidget(),
+            Padding(padding: EdgeInsets.all(20),
+            child: SearchInputWidget(),),
             const SizedBox(
               height: 20.0,
             ),

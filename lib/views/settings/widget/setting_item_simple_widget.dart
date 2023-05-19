@@ -9,7 +9,7 @@ class SettingItemSimpleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0),
+      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
       width: double.infinity,
       child: Column(
         children: [

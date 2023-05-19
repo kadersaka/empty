@@ -20,7 +20,8 @@ class SettingItemWidget extends StatelessWidget {
           onTap!();
         }
       },
-      child: SizedBox(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         width: double.infinity,
         child: Column(
           children: [
