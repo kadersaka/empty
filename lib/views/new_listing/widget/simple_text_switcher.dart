@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-class BroadcastOptionSwitcherWidget extends StatefulWidget {
-  const BroadcastOptionSwitcherWidget({super.key});
+class SimpleTextSwitcherWidget extends StatefulWidget {
+  final String text;
+  final bool bold;
+  final double fontSize;
+  const SimpleTextSwitcherWidget(
+      {super.key, required this.text, this.bold=false, this.fontSize=14.0});
+
   @override
   State<StatefulWidget> createState() {
-    return _BroadcastOptionSwitcherWidgetState();
+    return _SimpleTextSwitcherWidgetState();
   }
 }
 
-class _BroadcastOptionSwitcherWidgetState
-    extends State<BroadcastOptionSwitcherWidget> {
+class _SimpleTextSwitcherWidgetState extends State<SimpleTextSwitcherWidget> {
   bool light = true;
 
   @override
@@ -22,10 +26,11 @@ class _BroadcastOptionSwitcherWidgetState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Broadcast to whole university.",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
+              Text(widget.text,
+                  style: TextStyle(
+                      fontSize: widget.fontSize,
+                      fontWeight:
+                          widget.bold ? FontWeight.bold : FontWeight.normal)),
               Switch(
                 // This bool value toggles the switch.
                 value: light,
@@ -40,15 +45,6 @@ class _BroadcastOptionSwitcherWidgetState
                   });
                 },
               )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "*Reach a bigger audience when you broadcast!",
-                style: TextStyle(fontSize: 14.0),
-              ),
             ],
           ),
         ],

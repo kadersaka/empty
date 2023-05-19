@@ -7,6 +7,8 @@ import '../../core/tools/print.tool.dart';
 import '../../widget/DrawerWidget.dart';
 import '../application_view.dart';
 import '../connections/connections_page.dart';
+import '../new_listing/bloc/new_listing_bloc.dart';
+import '../new_listing/new_listing_page.dart';
 import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_page.dart';
 import 'bloc/home_bloc.dart';
@@ -80,6 +82,17 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: BlocProvider(
                         create: (context) => SettingsBloc(),
                         child: SettingsPage(),
+                      ))),
+            );
+          } else if (state.navigationPage == NavigationPageEnum.newListing) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: BlocProvider(
+                        create: (context) => NewListingBloc(),
+                        child: NewListingPage(),
                       ))),
             );
           }

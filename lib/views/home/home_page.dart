@@ -1,4 +1,5 @@
 import 'package:empty/core/tools/print.tool.dart';
+import 'package:empty/views/home/bloc/home_bloc.dart';
 import 'package:empty/views/new_post/new_post_view.dart';
 import 'package:empty/widget/shape/bottom_sheet_modal_shape.dart';
 import 'package:flutter/material.dart';
@@ -124,6 +125,11 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           Navigator.of(context).pop();
           // Navigator.of(context).pop();
+
+          logToConsole("Post new listing");
+          logToConsole(BlocProvider.of<HomeBloc>(context));
+          BlocProvider.of<HomeBloc>(context)
+              .add(NavigateAppToPageEvent(NavigationPageEnum.newListing));
         },
       ),
     ];
@@ -471,7 +477,7 @@ class _HomePageState extends State<HomePage> {
                               shape: roundedBottomModalSheet(),
                               builder: (buildContext) =>
                                   BottomSheetModalContainer(
-                                    percentage: 0.80,
+                                      percentage: 0.80,
                                       title: "About",
                                       titleSize: 24.0,
                                       child: PostOwnerAboutView()));

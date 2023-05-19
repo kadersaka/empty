@@ -7,11 +7,14 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   DrawerMenuPageEnum currentDrawerMenuPage = DrawerMenuPageEnum.none;
+  NavigationPageEnum currentNavigationPage = NavigationPageEnum.none;
 
   HomeBloc() : super(HomeInitial()) {
     on<HomeEvent>((event, emit) {
       if (event is NavigateToPageEvent) {
         _handleNavigation(event, emit);
+      } else if (event is NavigateAppToPageEvent) {
+        _handlePageNavigation(event, emit);
       }
     });
   }
@@ -20,6 +23,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event.page != currentDrawerMenuPage) {
       emit(state.copyWith(drawerMenuPage: event.page));
       currentDrawerMenuPage = event.page;
+    } else {
+      logToConsole("Drawer: Already on the page");
+    }
+  }
+
+  void _handlePageNavigation(
+      NavigateAppToPageEvent event, Emitter<HomeState> emit) {
+    if (event.page != currentNavigationPage) {
+      emit(state.copyWith(navigationPage: event.page));
+      currentNavigationPage = event.page;
     } else {
       logToConsole("Drawer: Already on the page");
     }

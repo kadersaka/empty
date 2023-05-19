@@ -2,8 +2,8 @@ import 'package:empty/core/tools/print.tool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/new_post_bloc.dart';
-import '../widget/location_item_widget.dart';
+import '../../views/new_post/bloc/new_post_bloc.dart';
+import 'location_item_widget.dart';
 
 class LocationsView extends StatelessWidget {
   const LocationsView({super.key});

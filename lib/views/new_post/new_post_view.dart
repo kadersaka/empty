@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:empty/core/tools/print.tool.dart';
 import 'package:empty/core/utils/image_constant.dart';
 import 'package:empty/views/new_post/bloc/new_post_bloc.dart';
-import 'package:empty/views/new_post/views/locations_view.dart';
+import 'package:empty/widget/location/locations_view.dart';
 import 'package:empty/views/new_post/widget/category_widget.dart';
 import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +18,9 @@ import '../../widget/search/search_input_widget.dart';
 import '../../widget/shape/bottom_sheet_modal_shape.dart';
 import '../../widget/text/text_header_one_widget.dart';
 import '../../widget/text/text_label_widget.dart';
-import 'widget/broadcast_option_widget.dart';
+import '../../widget/form/broadcast_option_widget.dart';
 import 'widget/category_tooltip_content.dart';
-import 'widget/tag_widget.dart';
+import '../../widget/custom_tag_widget.dart';
 
 class NewPostView extends StatefulWidget {
   const NewPostView({super.key});
@@ -207,7 +207,10 @@ class _NewPostViewState extends State<NewPostView> {
           SizedBox(
             height: 10.0,
           ),
-          BroadcastOptionSwitcherWidget(),
+          BroadcastOptionSwitcherWidget(
+            title: "Broadcast to whole university",
+            text: "*Reach a bigger audience when you broadcast!",
+          ),
 
           SizedBox(
             height: 20.0,
