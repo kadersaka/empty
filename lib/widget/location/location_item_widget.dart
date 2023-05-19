@@ -12,11 +12,24 @@ class LocationItemWidget extends StatefulWidget {
 }
 
 class _LocationItemWidgetState extends State<LocationItemWidget> {
+  late bool isTapped;
+
+  @override
+  void initState() {
+    isTapped = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.onTap("3323 Seventh St. Bristol, England");
+        setState(() {
+          isTapped = true;
+          Future.delayed(Duration(seconds: 1), () {
+            widget.onTap("3323 Seventh St. Bristol, England");
+          });
+        });
       },
       child: Container(
           padding: const EdgeInsets.fromLTRB(
@@ -24,7 +37,7 @@ class _LocationItemWidgetState extends State<LocationItemWidget> {
               10,
               75,
               10),
-          //color: Colors.blue,
+          color: isTapped ? Color(0xffA6B4D7) : Colors.transparent,
           child: Column(
             children: [
               Row(
@@ -55,8 +68,10 @@ class _LocationItemWidgetState extends State<LocationItemWidget> {
                       Text(
                         "3323 Seventh St",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                        style: TextStyle(
+                            color: isTapped ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -67,7 +82,9 @@ class _LocationItemWidgetState extends State<LocationItemWidget> {
                         "Cristol, England",
                         //"Pharmacie de Garde: Oui",
                         textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: !isTapped ? Colors.grey : Colors.black),
                       )
                     ],
                   )),

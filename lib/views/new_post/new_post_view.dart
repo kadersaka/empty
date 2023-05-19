@@ -148,6 +148,7 @@ class _NewPostViewState extends State<NewPostView> {
                 placeholder: "Location",
                 iconData: Icons.place_outlined,
                 value: state.selectedLocation,
+                readOnly: true,
                 onTap: () {
                   //TODO show bottom sheet modal
                   showModalBottomSheet(
@@ -156,12 +157,15 @@ class _NewPostViewState extends State<NewPostView> {
                       isScrollControlled: true,
                       shape: roundedBottomModalSheet(),
                       builder: (buildContext) => BottomSheetModalContainer(
-                          title: "Location",
-                          header: SearchInputWidget(),
-                          child: BlocProvider.value(
-                            value: BlocProvider.of<NewPostBloc>(rootContext),
-                            child: LocationsView(),
-                          )));
+                            title: "Location",
+                            header: SearchInputWidget(),
+                            child: LocationsView(
+                              onItemSelected: (item) {
+                                BlocProvider.of<NewPostBloc>(rootContext)
+                                    .add(NewPostLocationSelectedEvent(item));
+                              },
+                            ),
+                          ));
                 },
               );
             },

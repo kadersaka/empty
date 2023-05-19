@@ -103,6 +103,7 @@ class _NewListingPageState extends State<NewListingPage> {
                             placeholder: "Location",
                             iconData: Icons.place_outlined,
                             value: state.selectedLocation,
+                            readOnly: true,
                             onTap: () {
                               //TODO show bottom sheet modal
                               showModalBottomSheet(
@@ -112,14 +113,18 @@ class _NewListingPageState extends State<NewListingPage> {
                                   shape: roundedBottomModalSheet(),
                                   builder: (buildContext) =>
                                       BottomSheetModalContainer(
-                                          title: "Location",
-                                          header: SearchInputWidget(),
-                                          child: BlocProvider.value(
-                                            value:
-                                                BlocProvider.of<NewListingBloc>(
-                                                    rootContext),
-                                            child: LocationsView(),
-                                          )));
+                                        title: "Location",
+                                        header: SearchInputWidget(),
+                                        child: LocationsView(
+                                          onItemSelected: (item) {
+                                            BlocProvider.of<NewListingBloc>(
+                                                    rootContext)
+                                                .add(
+                                                    NewListingLocationSelectedEvent(
+                                                        item));
+                                          },
+                                        ),
+                                      ));
                             },
                           );
                         },
