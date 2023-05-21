@@ -22,6 +22,7 @@ import '../../widget/text/text_label_widget.dart';
 import '../../widget/custom_tag_widget.dart';
 import 'bloc/new_listing_bloc.dart';
 import 'widget/marketplace_tooltip_content.dart';
+import 'widget/post_new_listing_widget.dart';
 import 'widget/simple_text_switcher.dart';
 
 class NewListingPage extends StatefulWidget {
@@ -284,7 +285,22 @@ class _NewListingPageState extends State<NewListingPage> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 70.0, vertical: 20.0),
                                         minimumSize: const Size(303, 40)),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      //
+                                      showModalBottomSheet(
+                                        context: context,
+                                        elevation: 0,
+                                        backgroundColor: Colors.white,
+                                        isScrollControlled: true,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(15),
+                                                topRight: Radius.circular(15))),
+                                        builder: (context) {
+                                          return PostNewListingWidget();
+                                        },
+                                      );
+                                    },
                                     child: const Text(
                                       "Publish",
                                       style: TextStyle(fontSize: 17),
