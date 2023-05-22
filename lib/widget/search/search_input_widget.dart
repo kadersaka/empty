@@ -29,7 +29,8 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
     return Container(
       padding: EdgeInsets.all(10.0),
       height: 50,
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+      decoration: BoxDecoration(
+          color: Colors.white, border: Border.all(color: Colors.grey)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

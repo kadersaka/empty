@@ -16,6 +16,7 @@ import '../constants/app_localizations.dart';
 import '../core/utils/default_dialog.tools.dart';
 import '../views/search/bloc/search_bloc.dart';
 import '../views/search/main_search_view.dart';
+import 'container/bottom_sheet_modal_container.dart';
 import 'custom_circle_avatar.dart';
 
 class SearchingProfileDrawerWidget extends StatefulWidget {
@@ -306,14 +307,12 @@ class _SearchingProfileDrawerWidgetState
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
         builder: (builderContext) {
-          return Container(
-            color: Colors.transparent,
-            height: deviceInfo == null ? 800.0 : deviceInfo!.size.height * 0.90,
-            child: BlocProvider(
+          return BottomSheetModalContainer(
+                  title: "Search",
+                  child: BlocProvider(
               create: (context) => SearchBloc(),
               child: SearchView(),
-            ),
-          );
+            ));
         });
   }
 

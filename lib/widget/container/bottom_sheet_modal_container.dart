@@ -20,7 +20,7 @@ class BottomSheetModalContainer extends StatelessWidget {
     MediaQueryData? deviceInfo = MediaQuery.of(context);
     return Container(
         height:
-            deviceInfo == null ? 800.0 : deviceInfo!.size.height * percentage,
+            deviceInfo == null ? 800.0 : deviceInfo.size.height * percentage,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
