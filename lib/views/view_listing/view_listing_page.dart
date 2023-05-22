@@ -391,14 +391,26 @@ class _ViewListingPageState extends State<ViewListingPage> {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(children: [
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget(),
-                      RelatedCircleWidget()
+                      RelatedCircleWidget(
+                        asset: 'assets/images/group_band.png',
+                        subTitle: '24 members',
+                        title: 'Campus Band',
+                      ),
+                      RelatedCircleWidget(
+                        asset: 'assets/images/woman_singing.png',
+                        subTitle: '19 members',
+                        title: 'Live Mics',
+                      ),
+                      RelatedCircleWidget(
+                        asset: 'assets/images/group_band.png',
+                        subTitle: '24 members',
+                        title: 'Campus Band',
+                      ),
+                      RelatedCircleWidget(
+                        asset: 'assets/images/group_band.png',
+                        subTitle: '24 members',
+                        title: 'Campus Band',
+                      ),
                     ]),
                   )),
 
@@ -425,14 +437,31 @@ class _ViewListingPageState extends State<ViewListingPage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(children: [
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget(),
-                          RelatedListingWidget()
+                          RelatedListingWidget(
+                            asset: "assets/images/big_girl_guitar.png",
+                            author: 'Ashley L.',
+                            title: '"Electric Keyboard"',
+                          ),
+                          RelatedListingWidget(
+                            asset: "assets/images/man_singing.jpg",
+                            author: 'Sumaiya A.',
+                            title: 'Singing Lessons',
+                          ),
+                          RelatedListingWidget(
+                            asset: "assets/images/big_girl_guitar.png",
+                            author: 'Ashley L.',
+                            title: '"Electric Keyboard"',
+                          ),
+                          RelatedListingWidget(
+                            asset: "assets/images/big_girl_guitar.png",
+                            author: 'Ashley L.',
+                            title: '"Electric Keyboard"',
+                          ),
+                          RelatedListingWidget(
+                            asset: "assets/images/big_girl_guitar.png",
+                            author: 'Ashley L.',
+                            title: '"Electric Keyboard"',
+                          ),
                         ]),
                       )
                     ],

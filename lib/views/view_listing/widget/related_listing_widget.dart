@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RelatedListingWidget extends StatelessWidget {
-  const RelatedListingWidget({super.key});
+  final String asset;
+  final String title;
+  final String author;
+  const RelatedListingWidget({super.key, required this.asset, required this.title, required this.author});
 
   @override
   Widget build(BuildContext context) {
@@ -14,23 +17,23 @@ class RelatedListingWidget extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                "assets/images/big_girl_guitar.png",
+                asset,
                 width: 135,
                 height: 187,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               )),
           SizedBox(
             height: 20.0,
           ),
           Text(
-            "Electric Keyboard",
+            title,
             style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: .0,
           ),
           Text(
-            "Ashley L.",
+            author,
             style: TextStyle(
               fontSize: 14.0,
             ),
