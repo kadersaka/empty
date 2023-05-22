@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchInputWidget extends StatefulWidget {
-  const SearchInputWidget({super.key});
+  final String placeholder;
+  const SearchInputWidget({super.key, this.placeholder = "Search"});
 
   @override
   State<StatefulWidget> createState() {
@@ -30,15 +31,15 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
       padding: EdgeInsets.all(10.0),
       height: 50,
       decoration: BoxDecoration(
-          color: Colors.white, border: Border.all(color: Colors.grey)),
+          color: Colors.white, border: Border.all(color: Color(0xffD9D9D9))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: TextFormField(
               style: TextStyle(),
-              decoration: const InputDecoration(
-                  hintText: "Search",
+              decoration: InputDecoration(
+                  hintText: widget.placeholder,
                   isDense: true,
                   contentPadding: EdgeInsets.only(bottom: 1.0),
                   border: InputBorder.none,
