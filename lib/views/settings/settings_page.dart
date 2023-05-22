@@ -1,6 +1,7 @@
 import 'package:empty/views/settings/bloc/settings_bloc.dart';
 import 'package:empty/views/settings/pages/help_center_page.dart';
 import 'package:empty/views/settings/pages/settings_change_password_page.dart';
+import 'package:empty/views/settings/pages/terms_of_use_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -112,9 +113,21 @@ class SettingsPage extends StatelessWidget {
                       );
                     },
                   ),
-                  const SettingItemSimpleWidget(
+                  SettingItemSimpleWidget(
                     icon: Icon(Icons.menu_book),
                     text: "Terms of Use",
+                    onTap: () {
+                      Navigator.push(
+                        rootContext,
+                        MaterialPageRoute(
+                            builder: (context) => BlocProvider.value(
+                                value: BlocProvider.of<HomeBloc>(rootContext),
+                                child: BlocProvider.value(
+                                    value: BlocProvider.of<SettingsBloc>(
+                                        rootContext),
+                                    child: TermsOfUserPage()))),
+                      );
+                    },
                   )
                 ],
               ),
