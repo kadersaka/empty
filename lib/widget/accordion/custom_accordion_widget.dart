@@ -17,12 +17,16 @@ class _AccordionState extends State<Accordion> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: _showContent ? const Color(0x00e9edf5) : Colors.white,
-      margin: const EdgeInsets.all(10),
+      color: _showContent ? const Color(0xffE9EDF5) : Colors.white,
+      margin: const EdgeInsets.all(0.0),
       child: Column(children: [
         // The title
         ListTile(
-          title: Text(widget.title),
+          title: Text(widget.title,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight:
+                      _showContent ? FontWeight.bold : FontWeight.normal)),
           trailing: IconButton(
             icon: Icon(
                 _showContent ? Icons.arrow_drop_up : Icons.arrow_drop_down),
@@ -38,7 +42,10 @@ class _AccordionState extends State<Accordion> {
             ? Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                child: Text(widget.content),
+                child: Text(
+                  widget.content,
+                  style: TextStyle(fontSize: 14),
+                ),
               )
             : Container()
       ]),

@@ -16,14 +16,50 @@ class FaqPage extends StatelessWidget {
 
     return PageContainerWidget(
         appBarTitle: "FAQ's",
-        child: const Column(
-          children: [
-            Accordion(
-              title: 'What is YuTU',
-              content:
-                  "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
-            ),
-          ],
+        hasPadding: false,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: const Column(
+            children: [
+              Accordion(
+                title: 'What is YuTU',
+                content:
+                    "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Accordion(
+                title: 'What is YuTU',
+                content:
+                    "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Accordion(
+                title: 'What is YuTU',
+                content:
+                    "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Accordion(
+                title: 'What is YuTU',
+                content:
+                    "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Accordion(
+                title: 'What is YuTU',
+                content:
+                    "YuTU is a local social video platform where people help people and lift each other up. It's a place to build local communities that are inclusive and progressive",
+              ),
+            ],
+          ),
         ));
   }
 }
