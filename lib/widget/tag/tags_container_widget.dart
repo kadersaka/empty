@@ -6,8 +6,12 @@ import '../custom_tag_widget.dart';
 class TagsContainerWidget extends StatelessWidget {
   final List<String> items;
   final Function onAddTap;
+  final bool hasAdd;
   const TagsContainerWidget(
-      {super.key, required this.items, required this.onAddTap});
+      {super.key,
+      required this.items,
+      required this.onAddTap,
+      this.hasAdd = true});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +25,17 @@ class TagsContainerWidget extends StatelessWidget {
                     child: SimpleTagWidget(text: e),
                   ))
               .toList(),
-          GestureDetector(
-            onTap: () {
-              onAddTap();
-            },
-            child: CustomTagChip(
-              text: "Add",
-              icon: Icons.add,
-            ),
-          )
+          hasAdd
+              ? GestureDetector(
+                  onTap: () {
+                    onAddTap();
+                  },
+                  child: CustomTagChip(
+                    text: "Add",
+                    icon: Icons.add,
+                  ),
+                )
+              : SizedBox()
         ],
       ),
     );
