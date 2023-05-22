@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.empty">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="empty"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- TODO: Add your Google Maps API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyD426GG6w5ueJan7zIMo5odyf6enhe1Px4"/> <!--TODO use string res-->
         <activity
             android:name=".MainActivity"
             android:exported="true"
