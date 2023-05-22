@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../views/application_view.dart';
 import '../DrawerWidget.dart';
-import '../appBar/default_app_bar_widget.dart';
 import '../appBar/secondary_app_bar_widget.dart';
-import '../appBar/top_header_menu_bar.widget.dart';
 
 class SecondaryPageContainerWidget extends StatelessWidget {
   final Widget child;
@@ -36,7 +34,7 @@ class SecondaryPageContainerWidget extends StatelessWidget {
                     : const EdgeInsets.all(0.0),
                 child: Column(children: [
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.only(left: 20.0, right: 10.0, top: 10.0, bottom: 10.0),
                     child: Column(
                       children: [
                         SecondaryAppBarWidget(

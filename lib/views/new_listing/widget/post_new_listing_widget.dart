@@ -1,13 +1,17 @@
 import 'dart:ui';
 
+import 'package:empty/core/tools/print.tool.dart';
+import 'package:empty/views/home/bloc/home_bloc.dart';
 import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PostNewListingWidget extends StatelessWidget {
   const PostNewListingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    logToConsole(BlocProvider.of<HomeBloc>(context));
     return Container(
       child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
@@ -121,7 +125,14 @@ class PostNewListingWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      UnderlineTextButton(text: "View Listing", onTap: () {})
+                      UnderlineTextButton(
+                          text: "View Listing",
+                          onTap: () {
+                            Navigator.pop(context);
+                            BlocProvider.of<HomeBloc>(context).add(
+                                NavigateAppToPageEvent(
+                                    NavigationPageEnum.viewListing));
+                          })
                     ],
                   )
                 ],

@@ -11,6 +11,7 @@ import '../new_listing/bloc/new_listing_bloc.dart';
 import '../new_listing/new_listing_page.dart';
 import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_page.dart';
+import '../view_listing/view_listing_page.dart';
 import 'bloc/home_bloc.dart';
 
 // import '../../../../core/utils/image_constant.dart';
@@ -94,6 +95,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         create: (context) => NewListingBloc(),
                         child: NewListingPage(),
                       ))),
+            );
+          } else if (state.navigationPage == NavigationPageEnum.viewListing) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ViewListingPage()),
             );
           }
         },

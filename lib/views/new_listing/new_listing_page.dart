@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:empty/views/home/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
@@ -7,9 +8,7 @@ import 'package:just_the_tooltip/just_the_tooltip.dart';
 import '../../core/tools/print.tool.dart';
 import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/container/page_container_widget.dart';
-import '../../widget/container/secondary_page_container_widget.dart';
 import '../../widget/form/broadcast_option_widget.dart';
-import '../../widget/form/form_select_widget.dart';
 import '../../widget/form/price_form_input_widget.dart';
 import '../../widget/input/default_text_input._widget.dart';
 import '../../widget/input/icon_text_input_widget.dart';
@@ -19,7 +18,6 @@ import '../../widget/search/search_input_widget.dart';
 import '../../widget/shape/bottom_sheet_modal_shape.dart';
 import '../../widget/tag/tags_container_widget.dart';
 import '../../widget/text/text_label_widget.dart';
-import '../../widget/custom_tag_widget.dart';
 import 'bloc/new_listing_bloc.dart';
 import 'widget/marketplace_tooltip_content.dart';
 import 'widget/post_new_listing_widget.dart';
@@ -63,9 +61,10 @@ class _NewListingPageState extends State<NewListingPage> {
 
   @override
   Widget build(BuildContext rootContext) {
-    return SecondaryPageContainerWidget(
+    logToConsole(BlocProvider.of<HomeBloc>(rootContext));
+    return PageContainerWidget(
         appBarTitle: "New Listing",
-        hasPadding: true,
+        hasPadding: false,
         child: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.all(20.0),
@@ -297,7 +296,11 @@ class _NewListingPageState extends State<NewListingPage> {
                                                 topLeft: Radius.circular(15),
                                                 topRight: Radius.circular(15))),
                                         builder: (context) {
-                                          return PostNewListingWidget();
+                                          return BlocProvider.value(
+                                            value: BlocProvider.of<HomeBloc>(
+                                                rootContext),
+                                            child: PostNewListingWidget(),
+                                          );
                                         },
                                       );
                                     },

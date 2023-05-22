@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../views/application_view.dart';
 import '../DrawerWidget.dart';
-import '../appBar/default_app_bar_widget.dart';
-import '../appBar/top_header_menu_bar.widget.dart';
+import '../appBar/secondary_app_bar_widget.dart';
 
 class PageContainerWidget extends StatelessWidget {
   final Widget child;
@@ -36,15 +35,13 @@ class PageContainerWidget extends StatelessWidget {
                 child: Column(children: [
                   Padding(
                     padding: hasHeaderPadding
-                        ? const EdgeInsets.all(20.0)
+                        ? const EdgeInsets.only(left: 20.0, right: 10.0, top: 10.0, bottom: 10.0)
                         : const EdgeInsets.all(0.0),
                     child: Column(
                       children: [
-                        DefaultAppBarWidget(
-                          dark: true,
-                          globalKey: _globalKey,
-                        ),
-                        TopHeaderMenuBar(
+                        SecondaryAppBarWidget(
+                            dark: true,
+                            globalKey: _globalKey,
                             color: Colors.black,
                             title: appBarTitle,
                             onBack: () {
