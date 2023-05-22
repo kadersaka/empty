@@ -309,6 +309,7 @@ class _SearchingProfileDrawerWidgetState
         builder: (builderContext) {
           return BottomSheetModalContainer(
                   title: "Search",
+                  hasCancel: true,
                   child: BlocProvider(
               create: (context) => SearchBloc(),
               child: SearchView(),
