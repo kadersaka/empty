@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../models/search.model.dart';
+
 part 'search_event.dart';
 part 'search_state.dart';
 

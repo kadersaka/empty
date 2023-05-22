@@ -10,28 +10,30 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(20.0),
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0))),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [TextHeaderOneWidget(text: "Search")],
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            SearchInputWidget(),
+    return SingleChildScrollView(
+      child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0))),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [TextHeaderOneWidget(text: "Search")],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              SearchInputWidget(),
 
-            //Dynamic COntainer
-            SearchResultsView(),
-            //SearchCategoryAllViewWidget()
-          ],
-        ));
+              //Dynamic COntainer
+              SearchResultsView(),
+              //SearchCategoryAllViewWidget()
+            ],
+          )),
+    );
   }
 }

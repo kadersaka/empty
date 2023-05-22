@@ -1,4 +1,7 @@
+import 'package:empty/core/tools/print.tool.dart';
+import 'package:empty/views/search/bloc/search_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widget/search_result_section_widget.dart';
 
@@ -8,8 +11,17 @@ class SearchResultsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [SearchResultSectionWidget(), SearchResultSectionWidget()],
+    logToConsole(BlocProvider.of<SearchBloc>(context));
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            ...state.data
+                .map((d) => SearchResultSectionWidget(data: d))
+                .toList()
+          ],
+        );
+      },
     );
   }
 }

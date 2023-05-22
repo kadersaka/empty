@@ -14,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_localizations.dart';
 import '../core/utils/default_dialog.tools.dart';
+import '../views/search/bloc/search_bloc.dart';
 import '../views/search/main_search_view.dart';
 import 'custom_circle_avatar.dart';
 
@@ -308,7 +309,10 @@ class _SearchingProfileDrawerWidgetState
           return Container(
             color: Colors.transparent,
             height: deviceInfo == null ? 800.0 : deviceInfo!.size.height * 0.90,
-            child: SearchView(),
+            child: BlocProvider(
+              create: (context) => SearchBloc(),
+              child: SearchView(),
+            ),
           );
         });
   }
@@ -327,9 +331,9 @@ class _SearchingProfileDrawerWidgetState
       context: context,
       builder: (context) => CustomSimpleDialog(
         text: 'Are you sure you want to log out of YuTU?',
-        okText: "Yes, Log Out", onOk: () {
-          
-        },),
+        okText: "Yes, Log Out",
+        onOk: () {},
+      ),
     );
 
     /*showGeneralDialog(

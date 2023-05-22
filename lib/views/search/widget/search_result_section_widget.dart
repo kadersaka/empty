@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/search.model.dart';
 import '../../../widget/text/text_header_one_widget.dart';
 import 'search_result_item_widget.dart';
 
 class SearchResultSectionWidget extends StatelessWidget {
-  const SearchResultSectionWidget({super.key});
+  final SearchResultSection data;
+  const SearchResultSectionWidget({
+    super.key,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             height: 20.0,
           ),
           Row(
-            children: [TextHeaderOneWidget(text: "Circles")],
+            children: [TextHeaderOneWidget(text: data.title)],
           ),
           SizedBox(
             height: 10.0,
           ),
-          SearchResultItemWidget(),
-          SearchResultItemWidget(),
+          ...data.items
+              .map((e) => SearchResultItemWidget(
+                    item: e,
+                  ))
+              .toList(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

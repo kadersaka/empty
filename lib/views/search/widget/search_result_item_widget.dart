@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/search.model.dart';
+
 class SearchResultItemWidget extends StatelessWidget {
-  const SearchResultItemWidget({super.key});
+  final SearchResutSectionItem item;
+  const SearchResultItemWidget({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.fromLTRB(
-          0, //From the design this is equal to 20 but we have already set a padding of 20 on the container 
-          6, 75, 6),
+            0, //From the design this is equal to 20 but we have already set a padding of 20 on the container
+            6,
+            75,
+            6),
         //color: Colors.blue,
         child: Column(
           children: [
@@ -16,9 +21,14 @@ class SearchResultItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image(
-                    image: AssetImage("assets/images/img_ellipse6.png"), 
-                    height: 40),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image(
+                      image: AssetImage(item.asset),
+                      height: 40,
+                      width: 40,
+                      fit: BoxFit.cover),
+                ),
                 const SizedBox(
                   width: 15.0,
                 ),
@@ -27,9 +37,10 @@ class SearchResultItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Guitar",
+                      item.header,
                       textAlign: TextAlign.left,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16.0),
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -37,7 +48,7 @@ class SearchResultItemWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                     "Public Circle",
+                      item.sub,
                       //"Pharmacie de Garde: Oui",
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 14.0, color: Colors.grey),
@@ -52,5 +63,4 @@ class SearchResultItemWidget extends StatelessWidget {
           ],
         ));
   }
-
 }
