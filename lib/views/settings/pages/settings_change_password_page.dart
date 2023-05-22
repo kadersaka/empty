@@ -19,66 +19,64 @@ class SettingsChangePasswordPage extends StatelessWidget {
 
     return PageContainerWidget(
         appBarTitle: "Password",
-        hasPadding: true,
-        hasHeaderPadding: false,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20.0,
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      TextHeaderTwoWidget(
-                        text: 'Change Password',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  DefaultTextInputWidget(
-                    placeholder: 'Old Password',
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  DefaultTextInputWidget(
-                    placeholder: 'New Password',
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  DefaultTextInputWidget(
-                    placeholder: 'Confirm New Password',
-                  ),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UnderlineTextButton(text: 'Forgot Password'),
-                      UnderlineTextButton(
-                        text: 'Save',
-                        onTap: () {
-                          logToConsole(
-                              BlocProvider.of<SettingsBloc>(rootContext));
+        hasPadding: false,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    TextHeaderTwoWidget(
+                      text: 'Change Password',
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                DefaultTextInputWidget(
+                  placeholder: 'Old Password',
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                DefaultTextInputWidget(
+                  placeholder: 'New Password',
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                DefaultTextInputWidget(
+                  placeholder: 'Confirm New Password',
+                ),
+                const SizedBox(
+                  height: 30.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UnderlineTextButton(text: 'Forgot Password'),
+                    UnderlineTextButton(
+                      text: 'Save',
+                      onTap: () {
+                        logToConsole(
+                            BlocProvider.of<SettingsBloc>(rootContext));
 
-                          BlocProvider.of<SettingsBloc>(rootContext).add(
-                              SettingsUpdatePasswordEvent(
-                                  UpdatePasswordFormState.submitted));
-                          Navigator.pop(rootContext);
-                        },
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
+                        BlocProvider.of<SettingsBloc>(rootContext).add(
+                            SettingsUpdatePasswordEvent(
+                                UpdatePasswordFormState.submitted));
+                        Navigator.pop(rootContext);
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
         ));
   }
 }

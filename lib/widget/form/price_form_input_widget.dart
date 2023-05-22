@@ -43,7 +43,8 @@ class _IconInputWidgetState extends State<PriceFromInputWidget> {
     return Container(
       padding: const EdgeInsets.all(10.0),
       height: 50,
-      decoration: BoxDecoration(border: Border.all(color: Color(0xffd9d9d9))),
+      decoration: BoxDecoration(
+          color: Colors.white, border: Border.all(color: Color(0xffd9d9d9))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -61,11 +62,9 @@ class _IconInputWidgetState extends State<PriceFromInputWidget> {
               style: TextStyle(fontWeight: FontWeight.bold),
               inputFormatters: [
                 CurrencyTextInputFormatter(
-                  locale: 'uk',
-                  decimalDigits: 2,
-                  symbol: ''
-                  //symbol: '£',
-                ),
+                    locale: 'uk', decimalDigits: 2, symbol: ''
+                    //symbol: '£',
+                    ),
               ],
               keyboardType: TextInputType.number,
               onTap: () {

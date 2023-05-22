@@ -4,7 +4,11 @@ class TextAreaWidget extends StatefulWidget {
   final String placeholder;
   final String? value;
   final bool readOnly;
-  const TextAreaWidget({super.key, required this.placeholder, this.value, this.readOnly=false});
+  const TextAreaWidget(
+      {super.key,
+      required this.placeholder,
+      this.value,
+      this.readOnly = false});
 
   @override
   State<StatefulWidget> createState() {
@@ -24,11 +28,14 @@ class _TextAreaWidgetState extends State<TextAreaWidget> {
   @override
   Widget build(BuildContext context) {
     //TODO reviex this line in case the onChange is fired and the widget is going to render
-    _inputController.text =  _inputController.text.isNotEmpty ? _inputController.text :  widget.value ?? "";
+    _inputController.text = _inputController.text.isNotEmpty
+        ? _inputController.text
+        : widget.value ?? "";
     return Container(
       padding: EdgeInsets.all(10.0),
       height: 100,
-      decoration: BoxDecoration(border: Border.all(color: Color(0xffd9d9d9))),
+      decoration: BoxDecoration(
+          color: Colors.white, border: Border.all(color: Color(0xffd9d9d9))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
