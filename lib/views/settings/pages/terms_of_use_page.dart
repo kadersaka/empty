@@ -122,6 +122,22 @@ class TermsOfUserPage extends StatelessWidget {
                         style:
                             TextStyle(fontSize: 12.0, color: Color(0xff737A82)),
                       ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        "Lörem ipsum klimatvänlig anas ibel. Sharenting "
+                        "katologi homortad doxa nylig. Megatik intraligt, "
+                        "i plafängen vebegt. Mikropesade brorsantrick, "
+                        "kavis, krosm tregins. Bende teravär derände. Nesed "
+                        "remani polyning oaktat onat. Petiras restat. "
+                        "Polyment dill även om soment förortare i ultrakan. "
+                        "Vakuktig kaföv. Nitrevis opeskade pekuligt, och tett. "
+                        "Dok. ",
+                        textAlign: TextAlign.justify,
+                        style:
+                            TextStyle(fontSize: 12.0, color: Color(0xff737A82)),
+                      ),
                     ],
                   ),
                 ),
@@ -188,7 +204,7 @@ class TermsOfUserPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: 20.0,
+                  height: 50.0,
                 ),
               ]),
             ),

@@ -6,7 +6,8 @@ class TermsOfUserHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      color: Colors.white,
       padding: const EdgeInsets.only(
           left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
       child: Row(
