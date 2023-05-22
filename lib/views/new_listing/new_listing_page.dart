@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:empty/views/home/bloc/home_bloc.dart';
+import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
@@ -9,6 +10,7 @@ import '../../core/tools/print.tool.dart';
 import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/container/page_container_widget.dart';
 import '../../widget/form/broadcast_option_widget.dart';
+import '../../widget/form/form_select_widget.dart';
 import '../../widget/form/price_form_input_widget.dart';
 import '../../widget/input/default_text_input._widget.dart';
 import '../../widget/input/icon_text_input_widget.dart';
@@ -22,6 +24,7 @@ import 'bloc/new_listing_bloc.dart';
 import 'widget/marketplace_tooltip_content.dart';
 import 'widget/post_new_listing_widget.dart';
 import 'widget/simple_text_switcher.dart';
+import 'widget/text_with_switcher.dart';
 
 class NewListingPage extends StatefulWidget {
   const NewListingPage({super.key});
@@ -34,6 +37,11 @@ class NewListingPage extends StatefulWidget {
 
 class _NewListingPageState extends State<NewListingPage> {
   final tooltipController = JustTheController();
+  late bool isBroadcasting;
+  late bool isCreatingNewCircle;
+  late bool isMakingCirclePrivate;
+
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -50,6 +58,10 @@ class _NewListingPageState extends State<NewListingPage> {
       // Prints the enum value of [TooltipStatus.isShowing] or [TooltipStatus.isHiding]
       print('controller: ${tooltipController.value}');
     });
+
+    isCreatingNewCircle = false;
+    isMakingCirclePrivate = false;
+    isBroadcasting = false;
     super.initState();
   }
 
@@ -65,6 +77,7 @@ class _NewListingPageState extends State<NewListingPage> {
     return PageContainerWidget(
         appBarTitle: "New Listing",
         hasPadding: false,
+        globalKey: _scaffoldKey,
         child: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.all(20.0),
@@ -201,6 +214,11 @@ class _NewListingPageState extends State<NewListingPage> {
                       ),
                       SimpleTextSwitcherWidget(text: "Must meet minimum offer"),
                       SizedBox(
+                        height: 10.0,
+                      ),
+                      DefaultTextInputWidget(
+                          placeholder: "What’s your minimum offer?  "),
+                      SizedBox(
                         height: 20.0,
                       ),
                       TextLabelWidget(
@@ -212,6 +230,7 @@ class _NewListingPageState extends State<NewListingPage> {
                       ),
                       TextAreaWidget(
                         placeholder: "Tell us about this listing...",
+                        maxLines: 40,
                       ),
                       SizedBox(
                         height: 20.0,
@@ -242,29 +261,171 @@ class _NewListingPageState extends State<NewListingPage> {
                         text:
                             "*You can not broadcast if your circle is private.",
                         title: 'Broadcast',
+                        isOn: isBroadcasting,
+                        onChanged: (value) {
+                          logToConsole(value);
+                          setState(() {
+                            isBroadcasting = value;
+                          });
+                        },
                       ),
                       SizedBox(
                         height: 50.0,
                       ),
-                      TextLabelWidget(
-                        text: "What circle do you want to post in?",
-                        isRequired: true,
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      IconInputWidget(
-                        placeholder: "Select",
-                        iconData: Icons.keyboard_arrow_down_outlined,
-                      ),
+                      isBroadcasting
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextLabelWidget(
+                                  text: "Post in a circle?",
+                                  isRequired: true,
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                FormSelectWidget()
+                              ],
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextLabelWidget(
+                                  text: "What circle do you want to post in?",
+                                  isRequired: true,
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                IconInputWidget(
+                                  placeholder: "Select",
+                                  iconData: Icons.keyboard_arrow_down_outlined,
+                                ),
+                              ],
+                            ),
+
                       //FormSelectWidget(),
                       SizedBox(
                         height: 20.0,
                       ),
                       SimpleTextSwitcherWidget(
-                          text: "Create a new circle for this listing.",
-                          fontSize: 16.0,
-                          bold: true),
+                        text: "Create a new circle for this listing.",
+                        fontSize: 16.0,
+                        bold: true,
+                        isOn: isCreatingNewCircle,
+                        onChanged: (value) {
+                          logToConsole(value);
+                          setState(() {
+                            isCreatingNewCircle = value;
+                          });
+                        },
+                      ),
+                      isCreatingNewCircle
+                          //[START] CREATING NEW CIRCLE
+                          ? Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  TextLabelWidget(
+                                    text: "What is the name of your circle?",
+                                    isRequired: true,
+                                  ),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  DefaultTextInputWidget(placeholder: ""),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  TextWithSwitcherWidget(
+                                    text: "Make circle private",
+                                    subText:
+                                        "*Only those you choose will be able to view this circle.",
+                                    fontSize: 16.0,
+                                    bold: true,
+                                    isOn: isMakingCirclePrivate,
+                                    onChanged: (value) {
+                                      logToConsole(value);
+                                      setState(() {
+                                        isMakingCirclePrivate = value;
+                                      });
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
+                                  TextLabelWidget(
+                                    text: "Add a cover  for your circle.",
+                                    isRequired: true,
+                                  ),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 90,
+                                        height: 90,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                color: Color(0xffd9d9d9)),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(45))),
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.add_circle_outline,
+                                                  color: Color(0xff737a82))
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 30.0,
+                                      ),
+                                      Column(
+                                        children: [
+                                          UnderlineTextButton(
+                                              text: "Add a Photo"),
+                                          SizedBox(
+                                            height: 30.0,
+                                          ),
+                                          UnderlineTextButton(
+                                              text: "Pick an Emoji"),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  TextLabelWidget(
+                                    text: "Pick Members",
+                                    isRequired: true,
+                                  ),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  IconInputWidget(
+                                    placeholder: "Select",
+                                    iconData: Icons.search,
+                                  ),
+                                  SizedBox(
+                                    height: 75.0,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : SizedBox(),
+                      //[END] CREATING NEW CIRCLE
                       SizedBox(
                         height: 50.0,
                       ),
@@ -282,7 +443,7 @@ class _NewListingPageState extends State<NewListingPage> {
                                               BorderRadius.circular(30),
                                         ),
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 70.0, vertical: 20.0),
+                                            horizontal: 70.0, vertical: 15.0),
                                         minimumSize: const Size(303, 40)),
                                     onPressed: () {
                                       //

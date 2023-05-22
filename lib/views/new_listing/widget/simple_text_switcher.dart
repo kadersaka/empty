@@ -4,8 +4,14 @@ class SimpleTextSwitcherWidget extends StatefulWidget {
   final String text;
   final bool bold;
   final double fontSize;
+  final Function? onChanged;
+  final bool isOn;
   const SimpleTextSwitcherWidget(
-      {super.key, required this.text, this.bold=false, this.fontSize=14.0});
+      {super.key,
+      required this.text,
+      this.bold = false,
+      this.fontSize = 14.0,
+      this.onChanged, this.isOn=false});
 
   @override
   State<StatefulWidget> createState() {
@@ -14,7 +20,13 @@ class SimpleTextSwitcherWidget extends StatefulWidget {
 }
 
 class _SimpleTextSwitcherWidgetState extends State<SimpleTextSwitcherWidget> {
-  bool light = true;
+  bool light = false;
+
+  @override
+  void initState() {
+    light = widget.isOn;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +55,9 @@ class _SimpleTextSwitcherWidgetState extends State<SimpleTextSwitcherWidget> {
                   setState(() {
                     light = value;
                   });
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(value);
+                  }
                 },
               )
             ],

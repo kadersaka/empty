@@ -4,11 +4,12 @@ class TextAreaWidget extends StatefulWidget {
   final String placeholder;
   final String? value;
   final bool readOnly;
+  final int maxLines;
   const TextAreaWidget(
       {super.key,
       required this.placeholder,
       this.value,
-      this.readOnly = false});
+      this.readOnly = false, this.maxLines=20});
 
   @override
   State<StatefulWidget> createState() {
@@ -44,7 +45,7 @@ class _TextAreaWidgetState extends State<TextAreaWidget> {
             controller: _inputController,
             readOnly: widget.readOnly,
             style: TextStyle(fontSize: 16.0),
-            maxLines: 20,
+            maxLines: widget.maxLines,
             decoration: InputDecoration(
               hintText: widget.placeholder,
               isDense: true,

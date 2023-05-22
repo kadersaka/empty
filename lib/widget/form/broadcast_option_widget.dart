@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class BroadcastOptionSwitcherWidget extends StatefulWidget {
   final String title;
   final String text;
-  const BroadcastOptionSwitcherWidget({super.key, required this.title, required this.text});
+  final Function? onChanged;
+  final bool isOn;
+  const BroadcastOptionSwitcherWidget({super.key, required this.title, required this.text, this.isOn=false, this.onChanged});
   @override
   State<StatefulWidget> createState() {
     return _BroadcastOptionSwitcherWidgetState();
@@ -12,7 +14,13 @@ class BroadcastOptionSwitcherWidget extends StatefulWidget {
 
 class _BroadcastOptionSwitcherWidgetState
     extends State<BroadcastOptionSwitcherWidget> {
-  bool light = true;
+  late bool light;
+
+  @override
+  void initState() {
+    light = widget.isOn;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +47,10 @@ class _BroadcastOptionSwitcherWidgetState
                   // This is called when the user toggles the switch.
                   setState(() {
                     light = value;
+
+                    if (widget.onChanged != null) {
+                    widget.onChanged!(value);
+                  }
                   });
                 },
               )
