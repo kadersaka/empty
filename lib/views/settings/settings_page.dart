@@ -29,8 +29,10 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            Padding(padding: EdgeInsets.all(20),
-            child: SearchInputWidget(),),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: SearchInputWidget(),
+            ),
             const SizedBox(
               height: 20.0,
             ),
@@ -47,8 +49,7 @@ class SettingsPage extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) => CustomSimpleDialog(
-                            text:
-                                'Please check your email for further instruction',
+                            text: 'We have sent you an email confirmation.',
                             okText: "",
                             onOk: () {},
                           ),
@@ -80,10 +81,20 @@ class SettingsPage extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const SettingItemSimpleWidget(
-                    icon: Icon(Icons.warning_amber_rounded),
-                    text: "Report a Problem",
-                  ),
+                  SettingItemSimpleWidget(
+                      icon: Icon(Icons.warning_amber_rounded),
+                      text: "Report a Problem",
+                      onTap: () {
+                        showDialog(
+                          context: rootContext,
+                          builder: (context) => CustomSimpleDialog(
+                            text:
+                                'Please check your email for further instruction',
+                            okText: "",
+                            onOk: () {},
+                          ),
+                        );
+                      }),
                   const SettingItemSimpleWidget(
                     icon: Icon(Icons.help_outline_rounded),
                     text: "Help Center",
