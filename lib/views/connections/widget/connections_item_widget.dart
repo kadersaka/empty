@@ -23,7 +23,11 @@ class _ConnectionItemWidgetState extends State<ConnectionItemWidget> {
     return Dismissible(
         key: Key("Key-${Random.secure().nextInt(100) + 10}"),
         background: Container(
-            color: Colors.yellow,
+            decoration: BoxDecoration(
+                color: Colors.yellow,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(6.0),
+                    bottomLeft: Radius.circular(6.0))),
             child: Row(
               children: [
                 Padding(
@@ -36,7 +40,11 @@ class _ConnectionItemWidgetState extends State<ConnectionItemWidget> {
               ],
             )),
         secondaryBackground: Container(
-            color: Colors.red,
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(6.0),
+                    bottomRight: Radius.circular(6.0))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
