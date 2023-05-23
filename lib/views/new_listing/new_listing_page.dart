@@ -22,6 +22,7 @@ import '../../widget/tag/tags_container_widget.dart';
 import '../../widget/text/text_label_widget.dart';
 import 'bloc/new_listing_bloc.dart';
 import 'widget/marketplace_tooltip_content.dart';
+import 'widget/post_in_cricle_widget.dart';
 import 'widget/post_new_listing_widget.dart';
 import 'widget/simple_text_switcher.dart';
 import 'widget/text_with_switcher.dart';
@@ -42,6 +43,7 @@ class _NewListingPageState extends State<NewListingPage> {
   late bool isMakingCirclePrivate;
   late bool hasMinimumOffer;
   late bool showMinimumOfferPriceInput;
+  late bool hasChoosedVideo = true;
 
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -66,6 +68,7 @@ class _NewListingPageState extends State<NewListingPage> {
     isBroadcasting = false;
     hasMinimumOffer = false;
     showMinimumOfferPriceInput = false;
+    hasChoosedVideo = false;
     super.initState();
   }
 
@@ -113,6 +116,7 @@ class _NewListingPageState extends State<NewListingPage> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
                             width: 144,
@@ -136,12 +140,29 @@ class _NewListingPageState extends State<NewListingPage> {
                                   SizedBox(
                                     height: 20.0,
                                   ),
-                                  Icon(Icons.add_circle_outline,
-                                      color: Color(0xff737a82))
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        hasChoosedVideo = !hasChoosedVideo;
+                                      });
+                                    },
+                                    child: Icon(Icons.add_circle_outline,
+                                        color: Color(0xff737a82)),
+                                  )
                                 ],
                               ),
                             ),
-                          )
+                          ),
+                          hasChoosedVideo
+                              ? Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    UnderlineTextButton(text: "Edit")
+                                  ],
+                                )
+                              : SizedBox(),
                         ],
                       ),
                       SizedBox(
@@ -308,7 +329,14 @@ class _NewListingPageState extends State<NewListingPage> {
                                 SizedBox(
                                   height: 10.0,
                                 ),
-                                FormSelectWidget()
+                                FormSelectWidget(),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [PostInCircleWidget()],
+                                )
                               ],
                             )
                           : Column(
