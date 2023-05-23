@@ -1,15 +1,19 @@
 import 'dart:typed_data';
 
+import 'package:empty/views/view_listing/views/make_offer_view.dart';
 import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../core/tools/google_marker.tools.dart';
+import '../../widget/container/bottom_sheet_modal_container.dart';
 import '../../widget/container/page_container_widget.dart';
 import '../../widget/input/text_area._widget.dart';
 import '../../widget/tag/tags_container_widget.dart';
 import '../../widget/text/text_label_widget.dart';
+import '../home/bloc/home_bloc.dart';
 import 'widget/;usic_place_widget.dart';
 import 'widget/marketplace_place_widget.dart';
 import 'widget/related_circle_widget.dart';
@@ -53,7 +57,7 @@ class _ViewListingPageState extends State<ViewListingPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext rootContext) {
     return PageContainerWidget(
         appBarTitle: "View Listing",
         hasPadding: false,
@@ -506,7 +510,26 @@ class _ViewListingPageState extends State<ViewListingPage> {
                                   horizontal: 30.0, vertical: 10.0),
                               minimumSize: const Size(100, 15)),
                           onPressed: () {
-                            //
+                            showModalBottomSheet(
+                              context: context,
+                              elevation: 0,
+                              backgroundColor: Colors.white,
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15))),
+                              builder: (context) {
+                                return BottomSheetModalContainer(
+                                    title: "Make an Offer",
+                                    titleSize: 24,
+                                    child: BlocProvider.value(
+                                      value: BlocProvider.of<HomeBloc>(
+                                          rootContext),
+                                      child: ViewListingMakeOfferView(),
+                                    ));
+                              },
+                            );
                           },
                           child: const Text(
                             "Make Offer",

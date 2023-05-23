@@ -125,7 +125,10 @@ class _WelcomePageState extends State<WelcomePage> {
           } else if (state.navigationPage == NavigationPageEnum.viewListing) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ViewListingPage()),
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: ViewListingPage())),
             );
           } else if (state.navigationPage == NavigationPageEnum.marketplace) {
             Navigator.push(
