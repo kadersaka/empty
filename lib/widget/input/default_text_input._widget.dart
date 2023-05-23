@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class DefaultTextInputWidget extends StatelessWidget {
   final String placeholder;
-  const DefaultTextInputWidget({super.key, required this.placeholder});
+  final Function? onTap;
+  const DefaultTextInputWidget(
+      {super.key, required this.placeholder, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,11 @@ class DefaultTextInputWidget extends StatelessWidget {
         children: [
           Expanded(
               child: TextFormField(
+            onTap: () {
+              if (onTap != null) {
+                onTap!();
+              }
+            },
             style: TextStyle(),
             decoration: InputDecoration(
               hintText: placeholder,

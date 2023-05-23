@@ -40,6 +40,8 @@ class _NewListingPageState extends State<NewListingPage> {
   late bool isBroadcasting;
   late bool isCreatingNewCircle;
   late bool isMakingCirclePrivate;
+  late bool hasMinimumOffer;
+  late bool showMinimumOfferPriceInput;
 
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -62,6 +64,8 @@ class _NewListingPageState extends State<NewListingPage> {
     isCreatingNewCircle = false;
     isMakingCirclePrivate = false;
     isBroadcasting = false;
+    hasMinimumOffer = false;
+    showMinimumOfferPriceInput = false;
     super.initState();
   }
 
@@ -212,12 +216,33 @@ class _NewListingPageState extends State<NewListingPage> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      SimpleTextSwitcherWidget(text: "Must meet minimum offer"),
+                      SimpleTextSwitcherWidget(
+                          text: "Must meet minimum offer",
+                          onChanged: (value) {
+                            setState(() {
+                              hasMinimumOffer = value;
+
+                              //always not show the price input if value changed
+                              showMinimumOfferPriceInput = false;
+                            });
+                          }),
                       SizedBox(
                         height: 10.0,
                       ),
-                      DefaultTextInputWidget(
-                          placeholder: "What’s your minimum offer?  "),
+                      hasMinimumOffer
+                          ? showMinimumOfferPriceInput
+                              ? PriceFromInputWidget(
+                                  placeholder: '',
+                                )
+                              : DefaultTextInputWidget(
+                                  placeholder: "What’s your minimum offer?  ",
+                                  onTap: () {
+                                    setState(() {
+                                      showMinimumOfferPriceInput = true;
+                                    });
+                                  },
+                                )
+                          : SizedBox(),
                       SizedBox(
                         height: 20.0,
                       ),
