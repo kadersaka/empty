@@ -11,7 +11,7 @@ class MusicPlace extends StatelessWidget {
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Center(
-        child: Image.asset("assets/images/cassette.jpg", height: 40,),
+        child: Image.asset("assets/images/kaset_circled.png", height: 40,),
       ),
     );
   }

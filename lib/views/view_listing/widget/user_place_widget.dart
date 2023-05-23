@@ -11,9 +11,12 @@ class UserPlace extends StatelessWidget {
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Center(
-        child: Image.asset(
-          "assets/images/4.png",
-          height: 40,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.0),
+          child: Image.asset(
+            "assets/images/girl_with_guitar_rounded.png",
+            height: 40,
+          ),
         ),
       ),
     );

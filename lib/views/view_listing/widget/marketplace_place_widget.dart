@@ -11,7 +11,7 @@ class MarketplacePlace extends StatelessWidget {
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Center(
-        child: Image.asset("assets/images/flame-shelving-with-canopy.png"),
+        child: Image.asset("assets/images/marketplace_green.png"),
       ),
     );
   }
