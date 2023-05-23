@@ -11,6 +11,7 @@ import '../inbox/bloc/inbox_bloc.dart';
 import '../inbox/inbox_page.dart';
 import '../new_listing/bloc/new_listing_bloc.dart';
 import '../new_listing/new_listing_page.dart';
+import '../saved/saved_page.dart';
 import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_page.dart';
 import '../view_listing/view_listing_page.dart';
@@ -96,6 +97,17 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: BlocProvider(
                         create: (context) => InboxBloc(),
                         child: InboxPage(),
+                      ))),
+            );
+          } else if (state.drawerMenuPage == DrawerMenuPageEnum.saved) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: BlocProvider(
+                        create: (context) => InboxBloc(),
+                        child: SavedPage(),
                       ))),
             );
           } else if (state.navigationPage == NavigationPageEnum.newListing) {
