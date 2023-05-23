@@ -141,6 +141,9 @@ class _SearchingProfileDrawerWidgetState
               onTap: () {
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                logToConsole(BlocProvider.of<HomeBloc>(context));
+                BlocProvider.of<HomeBloc>(context)
+                    .add(NavigateToPageEvent(DrawerMenuPageEnum.inbox));
               },
               leading: FaIcon(
                 FontAwesomeIcons.inbox,
@@ -161,6 +164,9 @@ class _SearchingProfileDrawerWidgetState
               onTap: () {
                 Navigator.of(context).pop();
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                logToConsole(BlocProvider.of<HomeBloc>(context));
+                BlocProvider.of<HomeBloc>(context)
+                    .add(NavigateToPageEvent(DrawerMenuPageEnum.saved));
               },
               leading: FaIcon(
                 FontAwesomeIcons.heart,
@@ -308,12 +314,12 @@ class _SearchingProfileDrawerWidgetState
         isScrollControlled: true,
         builder: (builderContext) {
           return BottomSheetModalContainer(
-                  title: "Search",
-                  hasCancel: true,
-                  child: BlocProvider(
-              create: (context) => SearchBloc(),
-              child: SearchView(),
-            ));
+              title: "Search",
+              hasCancel: true,
+              child: BlocProvider(
+                create: (context) => SearchBloc(),
+                child: SearchView(),
+              ));
         });
   }
 
