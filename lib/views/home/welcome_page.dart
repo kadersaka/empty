@@ -9,6 +9,7 @@ import '../application_view.dart';
 import '../connections/connections_page.dart';
 import '../inbox/bloc/inbox_bloc.dart';
 import '../inbox/inbox_page.dart';
+import '../marketplace/marketplace_page.dart';
 import '../new_listing/bloc/new_listing_bloc.dart';
 import '../new_listing/new_listing_page.dart';
 import '../saved/saved_page.dart';
@@ -125,6 +126,14 @@ class _WelcomePageState extends State<WelcomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ViewListingPage()),
+            );
+          } else if (state.navigationPage == NavigationPageEnum.marketplace) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: MarketplacePage())),
             );
           }
         },

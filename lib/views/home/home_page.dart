@@ -18,6 +18,8 @@ import '../../widget/imageStackWidget.dart';
 import '../../widget/text/text_header_one_widget.dart';
 import '../CreateCircleBottomSheet.dart';
 import '../application_view.dart';
+import '../marketplace/bloc/marketplace_bloc.dart';
+import '../marketplace/marketplace_page.dart';
 import '../new_post/bloc/new_post_bloc.dart';
 import '../post_owner_about/post_owner_about_view.dart';
 
@@ -183,6 +185,9 @@ class _HomePageState extends State<HomePage> {
           // BlocProvider.of<NavigationBloc>(context).add(DismissCurrentViewNavigationEvent());
           // BlocProvider.of<NavigationBloc>(context).add(NavigationEventBottomNavTap(RoutePath.Marketplace));
           // BlocProvider.of<NavigationBloc>(context).add(NavigationEventRedirect(routePath: RoutePath.Marketplace));
+          logToConsole(BlocProvider.of<HomeBloc>(context));
+          BlocProvider.of<HomeBloc>(context)
+              .add(NavigateAppToPageEvent(NavigationPageEnum.marketplace));
         },
       ),
       InkWell(
