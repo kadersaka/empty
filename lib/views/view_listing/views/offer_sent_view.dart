@@ -99,10 +99,16 @@ class _OfferSentViewState extends State<OfferSentView> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text(
-                      "When an offer is accepted they will have 48 hours to produce payment. If a payment isn’t made in time the listing will be re-activated.",
-                      style: TextStyle(
-                          height: 1.5, fontSize: 14, color: Colors.grey))
+                  RichText(
+                      text: TextSpan(
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                          text: "(User name) will have ",
+                          children: [
+                        TextSpan(
+                            text: "48 hours",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: " to make a payment.")
+                      ]))
                 ],
               ))
             ],

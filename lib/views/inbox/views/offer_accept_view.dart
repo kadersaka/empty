@@ -60,9 +60,17 @@ class _OfferAcceptViewState extends State<OfferAcceptView> {
                           textAlign: TextAlign.start,
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold)),
-                      Text(
-                          "(User name) will have 48 hours to make a payment. .",
-                          style: TextStyle(fontSize: 12, color: Colors.grey))
+                      RichText(
+                          text: TextSpan(
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
+                              text: "(User name) will have ",
+                              children: [
+                            TextSpan(
+                                text: "48 hours",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: " to make a payment.")
+                          ])),
                     ],
                   ))
                 ],
