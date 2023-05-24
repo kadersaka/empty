@@ -254,6 +254,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_chat_bubble:
+    dependency: "direct main"
+    description:
+      name: flutter_chat_bubble
+      sha256: ede33df7237fea3d89464c8493bfa0bee2f94f50fd097ebd30c517c3c0d4fcf9
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   flutter_color_models:
     dependency: transitive
     description:
@@ -640,6 +648,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  shape_of_view_null_safe:
+    dependency: "direct main"
+    description:
+      name: shape_of_view_null_safe
+      sha256: "0179b77beff9c88b7ab334237431c48196e093b706db7f99f29bcac8ad49bbff"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   shared_preferences:
     dependency: transitive
     description:
