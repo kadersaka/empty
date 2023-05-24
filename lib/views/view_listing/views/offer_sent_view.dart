@@ -2,6 +2,9 @@ import 'package:empty/widget/text/underline_text_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../home/bloc/home_bloc.dart';
 
 class OfferSentView extends StatefulWidget {
   const OfferSentView({super.key});
@@ -123,7 +126,9 @@ class _OfferSentViewState extends State<OfferSentView> {
                                 horizontal: 70.0, vertical: 15.0),
                             minimumSize: const Size(303, 40)),
                         onPressed: () {
-                          //
+                          BlocProvider.of<HomeBloc>(context).add(
+                              NavigateAppToPageEvent(
+                                  NavigationPageEnum.message_offer));
                         },
                         child: const Text(
                           "Send a Message",

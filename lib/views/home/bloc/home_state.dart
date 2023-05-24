@@ -26,4 +26,4 @@ class HomeInitial extends HomeState {
 
 enum DrawerMenuPageEnum { faq, connections, settings, inbox, saved, none }
 
-enum NavigationPageEnum { none, newListing, viewListing, marketplace }
+enum NavigationPageEnum { none, newListing, viewListing, marketplace, message_offer }

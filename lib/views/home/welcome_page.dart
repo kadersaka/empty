@@ -1,5 +1,6 @@
 import 'package:empty/views/faq/faq_page.dart';
 import 'package:empty/views/home/home_page.dart';
+import 'package:empty/views/offer_sent_message/offer_sent_message_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -137,6 +138,14 @@ class _WelcomePageState extends State<WelcomePage> {
                   builder: (context) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(rootContext),
                       child: MarketplacePage())),
+            );
+          } else if (state.navigationPage == NavigationPageEnum.message_offer) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: OfferSentMessagePage())),
             );
           }
         },
