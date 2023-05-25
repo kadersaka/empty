@@ -1,8 +1,11 @@
+import 'package:empty/views/inbox/views/write_review_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../widget/container/bottom_sheet_modal_container.dart';
 import '../../../widget/dialogs/custom_simple_dailog.dart';
+import '../../../widget/shape/bottom_sheet_modal_shape.dart';
 import '../../home/bloc/home_bloc.dart';
 import '../pages/discussion_page.dart';
 
@@ -29,7 +32,26 @@ class MoreView extends StatelessWidget {
         MoreIemWidget(
           icon: Icons.star_border,
           title: "Write a Review",
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(rootContext);
+
+            showModalBottomSheet(
+              context: rootContext,
+              elevation: 0,
+              isScrollControlled: true,
+              shape: roundedBottomModalSheet(),
+              builder: (buildContext) => BottomSheetModalContainer(
+                  title: "Write a Review",
+                  titleSize: 24.0,
+                  child: Container(
+                    width: double.infinity,
+                    child: BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(rootContext),
+                      child: WriteReviewView(),
+                    ),
+                  )),
+            );
+          },
         ),
         MoreIemWidget(
           icon: CupertinoIcons.trash,
@@ -39,7 +61,6 @@ class MoreView extends StatelessWidget {
             showDialog(
               context: rootContext,
               builder: (context) => CustomSimpleDialog(
-                
                 text: 'Are you sure you want to delete this message?',
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
