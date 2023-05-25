@@ -4,8 +4,9 @@ class UnderlineTextButton extends StatelessWidget {
   final String text;
   final Function? onTap;
   final double fontSize;
+  final Color color;
   const UnderlineTextButton(
-      {super.key, required this.text, this.onTap, this.fontSize = 14});
+      {super.key, required this.text, this.color=Colors.blue, this.onTap, this.fontSize = 14});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,10 @@ class UnderlineTextButton extends StatelessWidget {
             style: TextStyle(
                 color: Colors.transparent,
                 fontWeight: FontWeight.bold,
-                shadows: [Shadow(offset: Offset(0, -2), color: Colors.blue)],
+                shadows: [Shadow(offset: Offset(0, -2), color: color)],
                 decoration: TextDecoration.underline,
                 decorationStyle: TextDecorationStyle.solid,
-                decorationColor: Colors.blue,
+                decorationColor: color,
                 decorationThickness: 2)));
   }
 }

@@ -83,7 +83,7 @@ class TheirOfferView extends StatelessWidget {
                   builder: (context) {
                     return BottomSheetModalContainer(
                       child: OfferAcceptView(),
-                      title: "Nice",
+                      title: "Congrats",
                       titleSize: 24.0,
                       hasCancel: false,
                     );

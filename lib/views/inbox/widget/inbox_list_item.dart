@@ -1,5 +1,6 @@
 import 'package:empty/core/tools/print.tool.dart';
 import 'package:empty/views/home/bloc/home_bloc.dart';
+import 'package:empty/views/inbox/views/more_view.dart';
 import 'package:empty/views/inbox/views/their_offer_view.dart';
 import 'package:empty/widget/container/bottom_sheet_modal_container.dart';
 import 'package:flutter/cupertino.dart';
@@ -166,7 +167,30 @@ class InboxListItemWidget extends StatelessWidget {
                       SizedBox(
                         height: 30.0,
                       ),
-                      Icon(Icons.more_horiz_sharp)
+                      InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: rootContext,
+                            elevation: 0,
+                            isScrollControlled: true,
+                            shape: roundedBottomModalSheet(),
+                            builder: (buildContext) =>
+                                BottomSheetModalContainer(
+                                    title: "More",
+                                    percentage: 0.5,
+                                    titleSize: 20.0,
+                                    child: Container(
+                                      width: double.infinity,
+                                      child: BlocProvider.value(
+                                        value: BlocProvider.of<HomeBloc>(
+                                            rootContext),
+                                        child: MoreView(),
+                                      ),
+                                    )),
+                          );
+                        },
+                        child: Icon(Icons.more_horiz_sharp),
+                      )
                     ],
                   ),
                 ],

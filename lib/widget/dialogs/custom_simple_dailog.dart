@@ -9,18 +9,22 @@ class CustomSimpleDialog extends StatelessWidget {
   final String? cancelText;
   final Function? onOk;
   final Function? onCancel;
+  final Color okColor;
+  final Color cancelColor;
   const CustomSimpleDialog(
       {super.key,
       required this.text,
       this.okText,
       this.cancelText,
+      this.okColor=Colors.red,
+      this.cancelColor=Colors.blue,
       this.onOk,
       this.onCancel});
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
         child: Dialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
@@ -50,9 +54,9 @@ class CustomSimpleDialog extends StatelessWidget {
                       },
                       child: Text(
                         okText ?? 'OK',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 18.0,
-                            color: Colors.red,
+                            color: okColor,
                             fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -61,6 +65,7 @@ class CustomSimpleDialog extends StatelessWidget {
                     ),
                     UnderlineTextButton(
                       text: cancelText ?? "Cancel",
+                      color: cancelColor,
                       onTap: () {
                         Navigator.pop(context);
                         if (onCancel != null) {
