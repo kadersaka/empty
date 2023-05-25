@@ -21,7 +21,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _handleNavigation(NavigateToPageEvent event, Emitter<HomeState> emit) {
     if (event.page != currentDrawerMenuPage) {
-      emit(state.copyWith(drawerMenuPage: event.page));
+      emit(state.copyWith(
+          drawerMenuPage: event.page, navigationPage: NavigationPageEnum.none));
       //currentDrawerMenuPage = event.page;
     } else {
       logToConsole("Drawer: Already on the page");
@@ -31,10 +32,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void _handlePageNavigation(
       NavigateAppToPageEvent event, Emitter<HomeState> emit) {
     if (event.page != currentNavigationPage) {
-      emit(state.copyWith(navigationPage: event.page));
+      emit(state.copyWith(
+          navigationPage: event.page, drawerMenuPage: DrawerMenuPageEnum.none));
       //currentNavigationPage = event.page;
     } else {
       logToConsole("Drawer: Already on the page");
     }
+  }
+
+  void clearNav() {
+    //state.copyWith(
+    //    navigationPage: NavigationPageEnum.none,
+    //    drawerMenuPage: DrawerMenuPageEnum.none));
   }
 }

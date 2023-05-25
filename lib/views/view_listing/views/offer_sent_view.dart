@@ -134,7 +134,7 @@ class _OfferSentViewState extends State<OfferSentView> {
                         onPressed: () {
                           BlocProvider.of<HomeBloc>(context).add(
                               NavigateAppToPageEvent(
-                                  NavigationPageEnum.messagesRequests));
+                                  NavigationPageEnum.messageoffer));
                         },
                         child: const Text(
                           "Send a Message",

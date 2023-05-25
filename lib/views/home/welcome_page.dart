@@ -157,6 +157,8 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: OfferSentMessagePage())),
             );
           }
+
+          BlocProvider.of<HomeBloc>(rootContext).clearNav();
         },
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

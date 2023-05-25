@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../widget/container/page_container_widget.dart';
+import 'widget/information_message_widget.dart';
 import 'widget/message_input_widget.dart';
 import 'widget/message_item_widget.dart';
+import 'widget/message_received_item_widget.dart';
 import 'widget/offer_message_widget.dart';
 import 'widget/option_widget.dart';
 
@@ -104,11 +106,17 @@ class OfferSentMessagePage extends StatelessWidget {
                       SizedBox(
                         height: 25.0,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [MessageWidget()],
-                      )
+                      MessageWidget(),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      MessageReceivedWidget(),
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      InformationMessageWidget(
+                          time: "9:41 AM",
+                          texts: ["😥 Your offer has been declined"]),
                     ],
                   ),
                 ),
