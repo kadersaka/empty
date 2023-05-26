@@ -185,10 +185,9 @@ class _NewPostViewState extends State<NewPostView> {
             readOnly: true,
             iconData: Icons.calendar_month_outlined,
             onTap: () async {
-              final DateTime? selected = await showDatePicker(
+              final DateTimeRange? selected = await showDateRangePicker(
                   context: rootContext,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
+                  firstDate: DateTime(2019),
                   lastDate: DateTime(DateTime.now().year + 1));
 
               //TODO use bloc to save and updat ehte state
